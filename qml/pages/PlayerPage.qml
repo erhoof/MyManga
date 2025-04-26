@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
 import QtMultimedia 5.6
+import Nemo.KeepAlive 1.2
 
 Page {
     id: page
@@ -11,10 +12,13 @@ Page {
     showNavigationIndicator: false
 
     property var jsonData
-    property var episodeJsonData
 
     Component.onCompleted: {
-        videoPlayer.source = "https://" + jsonData.player.host + "/" + episodeJsonData.hls.sd;
+        videoPlayer.source = jsonData.hls_480;
+    }
+
+    DisplayBlanking {
+        preventBlanking: videoPlayer.playbackState == MediaPlayer.PlayingState
     }
 
     BackgroundItem {

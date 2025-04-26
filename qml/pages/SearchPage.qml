@@ -18,27 +18,25 @@ Page {
         AppBarSearchField {
             id: searchField
             placeholderText: qsTr("Title name")
-        }
 
-        AppBarButton {
-            icon.source: "image://theme/icon-m-search"
+            Component.onCompleted: focus = true
 
-            onClicked: {
+            EnterKey.onClicked: {
                 searchModel.clear()
 
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", 'https://api.anilibria.tv/v3/title/search?search=' + searchField.text, true);
+                xhr.open("GET", 'https://api.anilibria.app/api/v1/app/search/releases?query=' + searchField.text, true);
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             var jsonResponse = JSON.parse(xhr.responseText);
-                            for (var key in jsonResponse.list) {
+                            for (var key in jsonResponse) {
                                 searchModel.append({
-                                    image: 'https://anilibria.top' + jsonResponse.list[key].posters.small.url,
-                                    name: jsonResponse.list[key].names.en,
-                                    description: jsonResponse.list[key].description,
-                                    titleID: jsonResponse.list[key].id
+                                    image: 'https://api.anilibria.app' + jsonResponse[key].poster.optimized.src,
+                                    name: jsonResponse[key].name.main,
+                                    description: jsonResponse[key].description,
+                                    id: jsonResponse[key].id
                                 })
                             }
                         }
@@ -46,13 +44,12 @@ Page {
                 };
 
                 xhr.send();
+                focus = false;
             }
         }
 
         AppBarButton {
             icon.source: "image://theme/icon-m-filter"
-
-            onClicked: splitView.push(searchPage)
         }
     }
 
@@ -78,7 +75,7 @@ Page {
             property var image
             property var name
             property var description
-            property var titleID
+            property var id
         }
         delegate: BackgroundItem {
             id: searchItem
@@ -129,17 +126,13 @@ Page {
 
             onClicked: {
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", 'https://api.anilibria.tv/v3/title?id=' + model.titleID, true);
+                xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + model.id, true);
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             var jsonResponse = JSON.parse(xhr.responseText);
-
-                            var page = Qt.createComponent("TitlePage.qml")
-                                .createObject(this, {jsonData: jsonResponse});
-
-                            pageStack.push(page)
+                            pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonResponse})
                         }
                     }
                 };

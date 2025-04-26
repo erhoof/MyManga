@@ -13,12 +13,12 @@ Page {
 
     AppBar {
         id: appBar
-        headerText: jsonData.names.ru
+        headerText: jsonData.name.main
 
         AppBarSpacer {}
 
         AppBarButton {
-            text: jsonData.in_favorites
+            text: jsonData.added_in_users_favorites
             icon.source: "image://theme/icon-m-favorite"
         }
 
@@ -49,7 +49,7 @@ Page {
 
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: 'https://anilibria.top' + jsonData.posters.medium.url
+                source: 'https://api.anilibria.app' + jsonData.poster.optimized.src
             }
 
             RowLayout {
@@ -76,17 +76,17 @@ Page {
 
             Label {
                 width: parent.width
-                text: jsonData.names.ru
+                text: jsonData.name.main
             }
 
             Label {
                 width: parent.width
-                text: jsonData.names.en
+                text: jsonData.name.english
             }
 
             Label {
                 color: Theme.secondaryColor
-                text: qsTr("Updated") + " " + Date(jsonData.updated * 1000).toString()
+                text: qsTr("Updated") + " " + jsonData.updated_at
             }
 
             RowLayout {
@@ -96,7 +96,7 @@ Page {
 
                 Label {
                     color: Theme.secondaryColor
-                    text: jsonData.season.year + " " + jsonData.season.string;
+                    text: jsonData.year + " " + jsonData.season.description;
                 }
             }
 
@@ -107,7 +107,7 @@ Page {
 
                 Label {
                     color: Theme.secondaryColor
-                    text: jsonData.type.full_string
+                    text: jsonData.type.description
                 }
             }
 
@@ -117,8 +117,11 @@ Page {
                 }
 
                 Label {
+                    property string joined: jsonData.genres.map(
+                                                function(genre) { return genre.name; }).join(", ")
+
                     color: Theme.secondaryColor
-                    text: jsonData.genres.join(", ")
+                    text: joined
                 }
             }
 
@@ -128,8 +131,16 @@ Page {
                 }
 
                 Label {
+                    property var kindFilter: jsonData.members.filter(function(member) {
+                        return member.role.value === "voicing";
+                    })
+
+                    property string nicknames: kindFilter.map(function(member) {
+                        return member.nickname;
+                    }).join(", ")
+
                     color: Theme.secondaryColor
-                    text: jsonData.team.voice.join(", ")
+                    text: nicknames
                 }
             }
 
@@ -139,19 +150,35 @@ Page {
                 }
 
                 Label {
+                    property var kindFilter: jsonData.members.filter(function(member) {
+                        return member.role.value === "timing";
+                    })
+
+                    property string nicknames: kindFilter.map(function(member) {
+                        return member.nickname;
+                    }).join(", ")
+
                     color: Theme.secondaryColor
-                    text: jsonData.team.timing.join(", ")
+                    text: nicknames
                 }
             }
 
             RowLayout {
                 Label {
-                    text: qsTr("Subtitles:")
+                    text: qsTr("Editors:")
                 }
 
                 Label {
+                    property var kindFilter: jsonData.members.filter(function(member) {
+                        return member.role.value === "editing";
+                    })
+
+                    property string nicknames: kindFilter.map(function(member) {
+                        return member.nickname;
+                    }).join(", ")
+
                     color: Theme.secondaryColor
-                    text: jsonData.team.translator.join(", ")
+                    text: nicknames
                 }
             }
 
@@ -162,7 +189,7 @@ Page {
 
                 Label {
                     color: Theme.secondaryColor
-                    text: jsonData.status.string
+                    text: jsonData.is_ongoing ? qsTr("Ongoing") : qsTr("Finished")
                 }
             }
 
@@ -215,7 +242,7 @@ Page {
                     property var episode
                     property var updateTime
                     property var name
-                    property var episodeJsonData
+                    property var jsonData
                 }
                 delegate: BackgroundItem {
                     id: episodesItem
@@ -240,24 +267,24 @@ Page {
                         }
 
                         Label {
-                            text: Date(model.updateTime * 1000).toString()
+                            text: updateTime
                         }
                     }
 
                     onClicked: {
-                        var page = Qt.createComponent("PlayerPage.qml").createObject(this, {jsonData: jsonData, episodeJsonData: episodeJsonData});
-                        pageStack.push(page)
+                        pageStack.push(Qt.resolvedUrl("PlayerPage.qml"), {jsonData: model.jsonData});
                     }
                 }
 
                 Component.onCompleted: {
-                    for (var key in jsonData.player.list) {
-                        console.log("add episode " + jsonData.player.list[key].name)
+                    console.log("Loading episodes")
+                    for (var key in jsonData.episodes) {
+                        console.log("Adding episode", jsonData.episodes[key].ordinal)
                         episodesModel.append({
-                            episode: jsonData.player.list[key].episode,
-                            updateTime: jsonData.player.list[key].created_timestamp,
-                            name: jsonData.player.list[key].name,
-                            episodeJsonData: jsonData.player.list[key],
+                            episode: jsonData.episodes[key].ordinal,
+                            updateTime: jsonData.episodes[key].updated_at,
+                            name: jsonData.episodes[key].name,
+                            jsonData: jsonData.episodes[key],
                         })
                     }
                 }

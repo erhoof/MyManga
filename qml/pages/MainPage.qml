@@ -17,8 +17,7 @@ Page {
         AppBarButton {
             icon.source: "image://theme/icon-m-search"
             onClicked: {
-                var page = Qt.createComponent("SearchPage.qml").createObject(this, {});
-                pageStack.push(page)
+                pageStack.push(Qt.resolvedUrl("SearchPage.qml"), {});
             }
         }
 
@@ -33,7 +32,7 @@ Page {
 
             PopupMenuItem {
                 text: qsTr("Profile")
-                hint: "@erhoof"
+                hint: "@username"
                 icon.source: "image://theme/icon-m-contact"
             }
 
@@ -85,7 +84,7 @@ Page {
                     right: parent.right
                 }
                 horizontalAlignment: Qt.AlignLeft
-                text: qsTr("Changes")
+                text: qsTr("Today")
             }
 
             SilicaListView {
@@ -106,7 +105,7 @@ Page {
                 model: ListModel {
                     id: upcomingModel
                     property var image
-                    property var jsonData
+                    property var id
                 }
                 delegate: BackgroundItem {
                     id: upcomingItem
@@ -122,25 +121,34 @@ Page {
                     }
 
                     onClicked: {
-                        var page = Qt.createComponent("TitlePage.qml")
-                            .createObject(this, {jsonData: model.jsonData});
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + model.id, true);
 
-                        pageStack.push(page)
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    var jsonResponse = JSON.parse(xhr.responseText)
+                                    pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonRespponse})
+                                }
+                            }
+                        };
+
+                        xhr.send();
                     }
                 }
 
                 Component.onCompleted: {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", 'https://api.anilibria.tv/v3/title/changes?limit=6', true);
+                    xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/schedule/now', true);
 
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             if (xhr.status === 200) {
                                 var jsonResponse = JSON.parse(xhr.responseText);
-                                for (var key in jsonResponse.list) {
+                                for (var key in jsonResponse.today) {
                                     upcomingModel.append({
-                                        image: 'https://anilibria.top' + jsonResponse.list[key].posters.medium.url,
-                                        jsonData: jsonResponse.list[key],
+                                        image: 'https://api.anilibria.app' + jsonResponse.today[key].release.poster.optimized.src,
+                                        id: jsonResponse.today[key].release.id,
                                     })
                                 }
                             }
@@ -213,7 +221,7 @@ Page {
                     property var image
                     property var name
                     property var description
-                    property var jsonData
+                    property var id
                 }
                 delegate: BackgroundItem {
                     id: updatesItem
@@ -265,27 +273,36 @@ Page {
                     }
 
                     onClicked: {
-                        var page = Qt.createComponent("TitlePage.qml")
-                            .createObject(this, {jsonData: model.jsonData});
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + model.id, true);
 
-                        pageStack.push(page)
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    var jsonResponse = JSON.parse(xhr.responseText);
+                                    pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonResponse})
+                                }
+                            }
+                        };
+
+                        xhr.send();
                     }
                 }
 
                 Component.onCompleted: {
                     var xhr = new XMLHttpRequest();
-                    xhr.open("GET", 'https://api.anilibria.tv/v3/title/updates?limit=5', true);
+                    xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/latest?limit=5', true);
 
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             if (xhr.status === 200) {
                                 var jsonResponse = JSON.parse(xhr.responseText);
-                                for (var key in jsonResponse.list) {
+                                for (var key in jsonResponse) {
                                     updatesModel.append({
-                                        image: 'https://anilibria.top' + jsonResponse.list[key].posters.small.url,
-                                        name: jsonResponse.list[key].names.en,
-                                        description: jsonResponse.list[key].description,
-                                        jsonData: jsonResponse.list[key],
+                                        image: 'https://api.anilibria.app/' + jsonResponse[key].poster.optimized.src,
+                                        name: jsonResponse[key].name.main,
+                                        description: jsonResponse[key].description,
+                                        id: jsonResponse[key].id
                                     })
                                 }
                             }

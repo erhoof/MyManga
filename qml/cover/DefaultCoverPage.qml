@@ -9,16 +9,16 @@ Cover {
 
     Component.onCompleted: {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", 'https://api.anilibria.tv/v3/title/updates?limit=1', true);
+        xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/latest?limit=1', true);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     var jsonResponse = JSON.parse(xhr.responseText);
-                    for (var key in jsonResponse.list) {
-                        horizontalImage.source = 'https://anilibria.top' + jsonResponse.list[key].posters.small.url
+                    for (var key in jsonResponse) {
+                        horizontalImage.source = 'https://api.anilibria.app/' + jsonResponse[key].poster.optimized.src
                         verticalImage.source = horizontalImage.source
-                        horizontalName.text = jsonResponse.list[key].names.ru
+                        horizontalName.text = jsonResponse[key].name.main
                     }
                 }
             }
