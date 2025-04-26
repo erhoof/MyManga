@@ -2,7 +2,7 @@ Name:       com.github.erhoof.AniClient
 Summary:    Anilibria Aurora OS Client
 Version:    0.1
 Release:    1
-License:    BSD-3-Clause
+License:    GPLv3
 URL:        https://auroraos.ru
 Source0:    %{name}-%{version}.tar.bz2
 
