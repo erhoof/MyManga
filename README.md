@@ -18,10 +18,9 @@ d. Hide dock with a click on a video
 - Implement search filters
 - Implement video download
 - Implement video quality selection
-- Add support for v1 AniLibria api (in case of v3 shutdown)
 
 ## Release
-v0.1 is available on Releases page
+Latest release is available on Releases page
 
 ## Screenshots
 ![](screenshots/VirtualBox_AuroraOS-5.1.3.png)
