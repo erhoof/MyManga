@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.0
 
 Cover {
     objectName: "defaultCover"
@@ -41,13 +42,30 @@ Cover {
             id: verticalImage
 
             anchors {
-                left: parent.left
-                right: parent.right
+                //left: parent.left
+                //right: parent.right
+                horizontalCenter: parent.horizontalCenter
             }
+            width: 200
             height: parent.height - verticalName.height - Theme.paddingMedium * 2
-            fillMode: Image.PreserveAspectFit
+            fillMode: Image.PreserveAspectCrop
 
             source: ""
+
+            layer.enabled: true
+            layer.effect: OpacityMask {
+                maskSource: Rectangle {
+                    width: verticalImage.width
+                    height: verticalImage.height
+                    radius: 10
+                }
+            }
+
+            BusyIndicator {
+                size: BusyIndicatorSize.Medium
+                anchors.centerIn: verticalImage
+                running: verticalImage.status != Image.Ready
+            }
         }
 
         Label {
@@ -82,6 +100,21 @@ Cover {
 
             fillMode: Image.PreserveAspectFit
             source: ""
+
+            layer.enabled: true
+            layer.effect: OpacityMask {
+                maskSource: Rectangle {
+                    width: horizontalImage.width
+                    height: horizontalImage.height
+                    radius: 10
+                }
+            }
+
+            BusyIndicator {
+                size: BusyIndicatorSize.Medium
+                anchors.centerIn: horizontalImage
+                running: horizontalImage.status != Image.Ready
+            }
         }
 
         Column {

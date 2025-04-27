@@ -3,8 +3,6 @@ import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
 
-import "."
-
 Page {
     id: page
 
@@ -66,7 +64,7 @@ Page {
         }
 
         clip: true
-        spacing: Theme.paddingMedium
+        spacing: Theme.paddingLarge
 
         VerticalScrollDecorator { flickable: updatesListView }
 
@@ -77,68 +75,10 @@ Page {
             property var description
             property var id
         }
-        delegate: BackgroundItem {
-            id: searchItem
+
+        delegate: Loader {
             width: parent.width
-            height: 300
-
-            /*Row {
-                height: parent.height
-                anchors.fill: parent
-                spacing: Theme.paddingMedium*/
-
-                Image {
-                    id: image
-
-                    width: 200
-                    height: parent.height
-                    //Layout.fillHeight: true
-                    fillMode: Image.PreserveAspectFit
-                    source: model.image
-                }
-
-                ColumnLayout {
-                    anchors {
-                        top: parent.top
-                        bottom: parent.bottom
-                        left: image.right
-                        right: parent.right
-
-                        leftMargin: Theme.paddingMedium
-                    }
-
-                    Label {
-                        id: name
-                        text: model.name
-                    }
-
-                    Text {
-                        Layout.preferredWidth: parent.width
-                        Layout.preferredHeight: parent.height - name.height
-
-                        color: Theme.secondaryColor
-                        text: model.description
-                        wrapMode: Text.WordWrap
-                        elide: Text.ElideRight
-                    }
-                //}
-            }
-
-            onClicked: {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + model.id, true);
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            var jsonResponse = JSON.parse(xhr.responseText);
-                            pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonResponse})
-                        }
-                    }
-                };
-
-                xhr.send();
-            }
+            source: "../components/TitleElement.qml"
         }
     }
 }

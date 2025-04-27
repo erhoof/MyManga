@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(com.github.erhoof.AniClient CXX)
+project(ru.erhoof.anilibria CXX)
 
 find_package (Qt5 COMPONENTS Core Network Qml Gui Quick LinguistTools Multimedia REQUIRED)
 
@@ -10,8 +10,7 @@ pkg_search_module(AURORA auroraapp_i18n REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-
-set(short_name AniClient)
+set(short_name anilibria)
 
 file(GLOB TsFiles "translations/*.ts")
 qt5_add_translation(QmFiles ${TsFiles})

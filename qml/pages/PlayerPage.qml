@@ -12,20 +12,68 @@ Page {
     showNavigationIndicator: false
 
     property var jsonData
+    property var episodeJsonData
 
     Component.onCompleted: {
-        videoPlayer.source = jsonData.hls_480;
+        videoPlayer.source = episodeJsonData.hls_480;
+        console.log(titleJsonData.name.main)
     }
 
     DisplayBlanking {
         preventBlanking: videoPlayer.playbackState == MediaPlayer.PlayingState
     }
 
+    DockedPanel {
+        id: topPanel
+
+        width: parent.width
+        height: Theme.itemSizeSmall
+
+        dock: Dock.Top
+
+        RowLayout {
+            anchors {
+                fill: parent
+                leftMargin: Theme.horizontalPageMargin
+                rightMargin: Theme.horizontalPageMargin
+            }
+
+            Label {
+                text: jsonData.name.main
+                elide: Text.ElideRight
+                font.pixelSize: Theme.fontSizeSmall
+                Layout.preferredWidth: 400
+            }
+
+            Column {
+                Layout.alignment: Qt.AlignRight
+                //Layout.fillWidth: true
+
+                Label {
+                    text: qsTr("Episode") + " " + episodeJsonData.ordinal
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignRight
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                }
+
+                Label {
+                    text: episodeJsonData.name
+                    horizontalAlignment: Text.AlignRight
+                    elide: Text.ElideRight
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                }
+            }
+        }
+    }
+
     BackgroundItem {
         clip: panel.expanded
+        highlightedColor: "transparent"
 
         anchors {
-            top: parent.top
+            top: topPanel.bottom
             bottom: panel.top
             left: parent.left
             right: parent.right
@@ -52,6 +100,7 @@ Page {
 
         onClicked: {
             panel.open = !panel.open
+            topPanel.open = !topPanel.open
         }
     }
 

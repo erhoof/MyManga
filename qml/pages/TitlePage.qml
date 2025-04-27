@@ -1,8 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
-import QtMultimedia 5.6
 import Aurora.Controls 1.0
+import QtGraphicalEffects 1.0
 
 Page {
     id: page
@@ -34,6 +34,7 @@ Page {
             left: parent.left
             right: parent.right
 
+            topMargin: Theme.paddingMedium
             leftMargin: Theme.horizontalPageMargin
         }
 
@@ -48,12 +49,29 @@ Page {
             clip: true
 
             Image {
+                id: image
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: 'https://api.anilibria.app' + jsonData.poster.optimized.src
+
+                layer.enabled: true
+                layer.effect: OpacityMask {
+                    maskSource: Rectangle {
+                        width: image.width
+                        height: image.height
+                        radius: 10
+                    }
+                }
+
+                BusyIndicator {
+                    size: BusyIndicatorSize.Medium
+                    anchors.centerIn: image
+                    running: image.status != Image.Ready
+                }
             }
 
             RowLayout {
                 width: parent.width
+                spacing: Theme.paddingMedium
 
                 Button {
                     Layout.fillWidth: true
@@ -74,122 +92,185 @@ Page {
                 }
             }
 
-            Label {
+            Rectangle {
                 width: parent.width
-                text: jsonData.name.main
-            }
+                height: infoColumn.height + Theme.paddingMedium * 1.5
+                color: Qt.rgba(1, 1, 1, 0.2)
+                radius: 8
 
-            Label {
-                width: parent.width
-                text: jsonData.name.english
-            }
+                Column {
+                    id: infoColumn
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        margins: Theme.paddingMedium
+                    }
 
-            Label {
-                color: Theme.secondaryColor
-                text: qsTr("Updated") + " " + jsonData.updated_at
-            }
+                    Label {
+                        width: parent.width
+                        text: jsonData.name.main
+                        wrapMode: Text.WordWrap
+                    }
 
-            RowLayout {
-                Label {
-                    text: qsTr("Season:")
-                }
+                    Label {
+                        width: parent.width
+                        text: jsonData.name.english
+                        wrapMode: Text.WordWrap
+                        color: Theme.secondaryColor
+                        font.pixelSize: Theme.fontSizeSmall
+                    }
 
-                Label {
-                    color: Theme.secondaryColor
-                    text: jsonData.year + " " + jsonData.season.description;
-                }
-            }
+                    RowLayout {
+                        Label {
+                            text: qsTr("Update:")
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                            color: Theme.secondaryColor
+                        }
 
-            RowLayout {
-                Label {
-                    text: qsTr("Type:")
-                }
+                        Label {
+                            color: Theme.secondaryHighlightColor
+                            text: Qt.formatDateTime(jsonData.updated_at, "dd MMMM yyyy, hh:mm")
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                        }
+                    }
 
-                Label {
-                    color: Theme.secondaryColor
-                    text: jsonData.type.description
-                }
-            }
+                    Rectangle {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                        color: "transparent"
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width: parent.width
+                            height: 2
+                            color: Theme.secondaryColor
+                            opacity: 0.8
+                        }
+                    }
 
-            RowLayout {
-                Label {
-                    text: qsTr("Genres:")
-                }
+                    RowLayout {
+                        Label {
+                            text: qsTr("Season:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
 
-                Label {
-                    property string joined: jsonData.genres.map(
-                                                function(genre) { return genre.name; }).join(", ")
+                        Label {
+                            color: Theme.secondaryColor
+                            text: jsonData.year + " " + jsonData.season.description;
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
 
-                    color: Theme.secondaryColor
-                    text: joined
-                }
-            }
+                    RowLayout {
+                        Label {
+                            text: qsTr("Type:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
 
-            RowLayout {
-                Label {
-                    text: qsTr("Voice acting:")
-                }
+                        Label {
+                            color: Theme.secondaryColor
+                            text: jsonData.type.description
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
 
-                Label {
-                    property var kindFilter: jsonData.members.filter(function(member) {
-                        return member.role.value === "voicing";
-                    })
+                    RowLayout {
+                        Label {
+                            text: qsTr("Genres:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
 
-                    property string nicknames: kindFilter.map(function(member) {
-                        return member.nickname;
-                    }).join(", ")
+                        Label {
+                            property string joined: jsonData.genres.map(
+                                                        function(genre) { return genre.name; }).join(", ")
 
-                    color: Theme.secondaryColor
-                    text: nicknames
-                }
-            }
+                            color: Theme.secondaryColor
+                            text: joined
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
 
-            RowLayout {
-                Label {
-                    text: qsTr("Timing:")
-                }
+                    RowLayout {
+                        property var kindFilter: jsonData.members.filter(function(member) {
+                            return member.role.value === "voicing";
+                        })
 
-                Label {
-                    property var kindFilter: jsonData.members.filter(function(member) {
-                        return member.role.value === "timing";
-                    })
+                        property string nicknames: kindFilter.map(function(member) {
+                            return member.nickname;
+                        }).join(", ")
 
-                    property string nicknames: kindFilter.map(function(member) {
-                        return member.nickname;
-                    }).join(", ")
+                        visible: nicknames.length != 0
 
-                    color: Theme.secondaryColor
-                    text: nicknames
-                }
-            }
+                        Label {
+                            text: qsTr("Voice acting:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
 
-            RowLayout {
-                Label {
-                    text: qsTr("Editors:")
-                }
+                        Label {
+                            color: Theme.secondaryColor
+                            text: parent.nicknames
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
 
-                Label {
-                    property var kindFilter: jsonData.members.filter(function(member) {
-                        return member.role.value === "editing";
-                    })
+                    RowLayout {
+                        property var kindFilter: jsonData.members.filter(function(member) {
+                            return member.role.value === "timing";
+                        })
 
-                    property string nicknames: kindFilter.map(function(member) {
-                        return member.nickname;
-                    }).join(", ")
+                        property string nicknames: kindFilter.map(function(member) {
+                            return member.nickname;
+                        }).join(", ")
 
-                    color: Theme.secondaryColor
-                    text: nicknames
-                }
-            }
+                        visible: nicknames.length != 0
 
-            RowLayout {
-                Label {
-                    text: qsTr("State:")
-                }
+                        Label {
+                            text: qsTr("Timing:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
 
-                Label {
-                    color: Theme.secondaryColor
-                    text: jsonData.is_ongoing ? qsTr("Ongoing") : qsTr("Finished")
+                        Label {
+                            color: Theme.secondaryColor
+                            text: parent.nicknames
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
+
+                    RowLayout {
+                        property var kindFilter: jsonData.members.filter(function(member) {
+                            return member.role.value === "editing";
+                        })
+
+                        property string nicknames: kindFilter.map(function(member) {
+                            return member.nickname;
+                        }).join(", ")
+
+                        visible: nicknames.length != 0
+
+                        Label {
+                            text: qsTr("Editors:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+
+                        Label {
+                            color: Theme.secondaryColor
+                            text: parent.nicknames
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
+
+                    RowLayout {
+                        Label {
+                            text: qsTr("State:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+
+                        Label {
+                            color: Theme.secondaryColor
+                            text: jsonData.is_ongoing ? qsTr("Ongoing") : qsTr("Finished")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
                 }
             }
 
@@ -249,30 +330,45 @@ Page {
                     width: parent.width
                     height: 100
 
-                    Column {
-                        width: parent.width
+                    Rectangle {
+                        anchors.fill: parent
+                        color: Qt.rgba(1, 1, 1, 0.2)
+                        radius: 8
 
-                        RowLayout {
-                            width: parent.width
+                        Column {
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors {
+                                left: parent.left
+                                right: parent.right
+                                margins: Theme.paddingMedium
+                            }
 
-                            Label {
-                                Layout.alignment: Qt.AlignLeft
-                                text: qsTr("Episode") + " " + model.episode
+                            RowLayout {
+                                width: parent.width
+
+                                Label {
+                                    Layout.alignment: Qt.AlignLeft
+                                    text: qsTr("Episode") + " " + model.episode
+                                }
+
+                                Label {
+                                    font.pixelSize: Theme.fontSizeSmall
+                                    Layout.alignment: Qt.AlignRight
+                                    text: Qt.formatDateTime(model.updateTime, "dd MMMM yyyy, hh:mm")
+                                    color: Theme.secondaryHighlightColor
+                                }
                             }
 
                             Label {
-                                Layout.alignment: Qt.AlignRight
                                 text: model.name
+                                color: Theme.secondaryColor
+                                font.pixelSize: Theme.fontSizeSmall
                             }
-                        }
-
-                        Label {
-                            text: updateTime
                         }
                     }
 
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("PlayerPage.qml"), {jsonData: model.jsonData});
+                        pageStack.push(Qt.resolvedUrl("PlayerPage.qml"), {jsonData: page.jsonData, episodeJsonData: model.jsonData});
                     }
                 }
 

@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
+import QtGraphicalEffects 1.0
 
 Page {
     id: page
@@ -10,7 +11,7 @@ Page {
     AppBar {
         id: appBar
 
-        headerText: "AniLibria"
+        headerText: qsTr("AniLibria")
 
         AppBarSpacer {}
 
@@ -75,7 +76,7 @@ Page {
         Column {
             id: column
             width: parent.width - Theme.horizontalPageMargin
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingLarge
 
             SectionHeader {
                 id: upcomingHeader
@@ -114,10 +115,24 @@ Page {
                     height: parent.height
 
                     Image {
+                        id: todayImage
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectCrop
                         source: model.image
-                        clip: true
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            maskSource: Rectangle {
+                                width: todayImage.width
+                                height: todayImage.height
+                                radius: 10
+                            }
+                        }
+
+                        BusyIndicator {
+                            size: BusyIndicatorSize.Medium
+                            anchors.centerIn: todayImage
+                            running: todayImage.status != Image.Ready
+                        }
                     }
 
                     onClicked: {
@@ -128,7 +143,7 @@ Page {
                             if (xhr.readyState === XMLHttpRequest.DONE) {
                                 if (xhr.status === 200) {
                                     var jsonResponse = JSON.parse(xhr.responseText)
-                                    pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonRespponse})
+                                    pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonResponse})
                                 }
                             }
                         };
@@ -159,10 +174,14 @@ Page {
                 }
             }
 
-            SecondaryButton {
+            Button {
                 id: scheduleButton
                 preferredWidth: parent.width
                 text: qsTr("Schedule")
+                icon.source: "image://theme/icon-m-date"
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("SchedulePage.qml"), {})
+                }
             }
 
             RowLayout {
@@ -197,11 +216,47 @@ Page {
                 text: qsTr("Updates")
             }
 
-            SecondaryButton {
+            Button {
                 id: randomTitleButton
                 preferredWidth: parent.width
                 text: qsTr("Random Title")
+                icon.source: "image://theme/icon-m-shuffle"
+
+                onClicked: {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/random?limit=1', true);
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                var jsonResponse = JSON.parse(xhr.responseText)
+
+                                var xhrTitle = new XMLHttpRequest();
+                                xhrTitle.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + jsonResponse[0].id, true);
+
+                                xhrTitle.onreadystatechange = function() {
+                                    if (xhrTitle.readyState === XMLHttpRequest.DONE) {
+                                        if (xhrTitle.status === 200) {
+                                            var jsonResponse = JSON.parse(xhrTitle.responseText);
+                                            pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonResponse})
+                                        }
+                                    }
+                                };
+
+                                xhrTitle.send();
+                            }
+                        }
+                    };
+
+                    xhr.send();
+                }
             }
+
+            /*Rectangle {
+                width: parent.width
+                opacity: 0
+                height: 0.1
+            }*/
 
             ListView {
                 id: updatesListView
@@ -211,10 +266,8 @@ Page {
                     right: parent.right
                 }
 
-                spacing: Theme.paddingMedium
+                spacing: Theme.paddingLarge
                 height: contentHeight
-
-                clip: true
 
                 model: ListModel {
                     id: updatesModel
@@ -223,70 +276,10 @@ Page {
                     property var description
                     property var id
                 }
-                delegate: BackgroundItem {
-                    id: updatesItem
+
+                delegate: Loader {
                     width: parent.width
-                    height: 300
-                    clip: true
-
-                    Row {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        height: parent.height
-
-                        Image {
-                            id: image
-                            width: 200
-                            height: parent.height
-                            fillMode: Image.PreserveAspectCrop
-                            source: model.image
-                        }
-
-                        Column {
-                            anchors {
-                                left: image.right
-                                right: parent.right
-
-                                leftMargin: Theme.paddingMedium
-                            }
-
-                            Label {
-                                id: name
-                                width: parent.width
-                                text: model.name
-                            }
-
-                            Text {
-                                anchors {
-                                    left: parent.left
-                                    right: parent.right
-                                }
-
-                                color: Theme.secondaryColor
-                                text: model.description
-                                wrapMode: Text.WordWrap
-                                elide: Text.ElideRight
-                            }
-                        }
-                    }
-
-                    onClicked: {
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + model.id, true);
-
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                if (xhr.status === 200) {
-                                    var jsonResponse = JSON.parse(xhr.responseText);
-                                    pageStack.push(Qt.resolvedUrl("TitlePage.qml"), {jsonData: jsonResponse})
-                                }
-                            }
-                        };
-
-                        xhr.send();
-                    }
+                    source: "../components/TitleElement.qml"
                 }
 
                 Component.onCompleted: {

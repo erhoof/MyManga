@@ -1,6 +1,6 @@
-Name:       com.github.erhoof.AniClient
-Summary:    Anilibria Aurora OS Client
-Version:    0.2
+Name:       ru.erhoof.anilibria
+Summary:    AniLibria Aurora OS Client
+Version:    0.3
 Release:    1
 License:    GPLv3
 URL:        https://auroraos.ru
@@ -13,7 +13,7 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
-Anilibria Aurora OS Client
+AniLibria Aurora OS Client
 
 %prep
 %autosetup

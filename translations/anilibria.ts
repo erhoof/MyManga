@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<TS version="2.1" language="en">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="58"/>
         <source>About Application</source>
-        <translation>О&#xa0;приложении</translation>
+        <translation>About Application</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="68"/>
@@ -16,7 +16,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>3-Clause BSD License</source>
-        <translation>Лицензия 3-Clause&#xa0;BSD</translation>
+        <translation>3-Clause&#xa0;BSD License</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="83"/>
@@ -46,5 +46,11 @@
         <source>AniClient</source>
         <translation>AniClient</translation>
     </message>
+</context>
+<context>
+    <name>AniClient</name>
+</context>
+<context>
+    <name>SchedulePage</name>
 </context>
 </TS>

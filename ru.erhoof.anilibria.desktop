@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=ru.erhoof.anilibria
+Exec=/usr/bin/ru.erhoof.anilibria
+Name=AniLibria
+
+[X-Application]
+Permissions=Audio;Internet
+OrganizationName=ru.erhoof
+ApplicationName=anilibria
+ExecDBus=/usr/bin/ru.erhoof.anilibria
+
+[X-Aurora-Application]
+IconMode=Crop
