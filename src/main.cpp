@@ -4,11 +4,11 @@
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
-    application->setOrganizationName(QStringLiteral("com.github.erhoof"));
-    application->setApplicationName(QStringLiteral("AniClient"));
+    application->setOrganizationName(QStringLiteral("ru.erhoof"));
+    application->setApplicationName(QStringLiteral("AniLibre"));
 
     QScopedPointer<QQuickView> view(Aurora::Application::createView());
-    view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/AniClient.qml")));
+    view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/AniLibre.qml")));
     view->show();
 
     return application->exec();

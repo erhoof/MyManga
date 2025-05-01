@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="68"/>
         <source>#descriptionText</source>
-        <translation>&lt;p&gt;Anilibria Aurora OS Client&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;AniLibria Aurora OS Client&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>

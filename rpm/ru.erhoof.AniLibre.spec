@@ -1,5 +1,5 @@
-Name:       ru.erhoof.anilibria
-Summary:    AniLibria Aurora OS Client
+Name:       ru.erhoof.AniLibre
+Summary:    Unofficial AniLibria Aurora OS Client
 Version:    0.3
 Release:    1
 License:    GPLv3
@@ -13,7 +13,7 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
-AniLibria Aurora OS Client
+Unofficial AniLibria Aurora OS Client
 
 %prep
 %autosetup

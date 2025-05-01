@@ -146,14 +146,4 @@ Cover {
             }
         }
     }
-
-    /*CoverTemplate {
-        objectName: "applicationCover"
-        primaryText: "AniLibria"
-        secondaryText: "Так звучит аниме!"
-        icon {
-            source: Qt.resolvedUrl("../icons/AniClient.svg")
-            sourceSize { width: icon.width; height: icon.height }
-        }
-    }*/
 }

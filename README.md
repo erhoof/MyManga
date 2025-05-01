@@ -1,7 +1,9 @@
-# AniLibria Aurora OS Client
+# AniLibre
+![](screenshots/icon.png)
+**Unofficial AniLibria client for Aurora OS**
 
 ## Introduction
-Basic app built on Aurora OS components, which allows you to
+App built on Aurora OS components, which allows you to
 - See latest changes on site
 - See latest updates on site
 - Search titles
@@ -12,21 +14,13 @@ a. Play/Pause
 b. See current position
 c. Use slider to change current position
 d. Hide dock with a click on a video
+- Russian translation is available
 
 ## Roadmap
-- Add Russian language translation
 - Implement search filters
 - Implement video download
 - Implement video quality selection
 
 ## Release
 Latest release is available on Releases page
-
-## Screenshots
-![](screenshots/VirtualBox_AuroraOS-5.1.3.png)
-![](screenshots/VirtualBox_AuroraOS-5.1.3_2.png)
-![](screenshots/VirtualBox_AuroraOS-5.1.3_3.png)
-![](screenshots/VirtualBox_AuroraOS-5.1.3_4.png)
-![](screenshots/VirtualBox_AuroraOS-5.1.3_5.png)
-![](screenshots/VirtualBox_AuroraOS-5.1.3_6.png)
 

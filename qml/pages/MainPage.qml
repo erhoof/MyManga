@@ -11,7 +11,7 @@ Page {
     AppBar {
         id: appBar
 
-        headerText: qsTr("AniLibria")
+        headerText: qsTr("AniLibre")
 
         AppBarSpacer {}
 
