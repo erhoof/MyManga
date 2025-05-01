@@ -1,5 +1,6 @@
 # AniLibre
 ![](screenshots/icon.png)
+
 **Unofficial AniLibria client for Aurora OS**
 
 ## Introduction
