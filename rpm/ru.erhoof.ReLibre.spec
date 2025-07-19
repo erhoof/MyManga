@@ -1,9 +1,9 @@
-Name:       ru.erhoof.AniLibre
-Summary:    Unofficial AniLibria Aurora OS Client
+Name:       ru.erhoof.ReLibre
+Summary:    Unofficial ReManga Aurora OS Client
 Version:    0.3
 Release:    1
 License:    GPLv3
-URL:        https://auroraos.ru
+URL:        https://github.com/erhoof/ReLibre
 Source0:    %{name}-%{version}.tar.bz2
 
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -13,7 +13,7 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
-Unofficial AniLibria Aurora OS Client
+Unofficial ReManga Aurora OS Client
 
 %prep
 %autosetup

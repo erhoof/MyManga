@@ -1,15 +1,15 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Icon=ru.erhoof.AniLibre
-Exec=/usr/bin/ru.erhoof.AniLibre
-Name=AniLibre
+Icon=ru.erhoof.ReLibre
+Exec=/usr/bin/ru.erhoof.ReLibre
+Name=ReLibre
 
 [X-Application]
 Permissions=Audio;Internet
 OrganizationName=ru.erhoof
-ApplicationName=AniLibre
-ExecDBus=/usr/bin/ru.erhoof.AniLibre
+ApplicationName=ReLibre
+ExecDBus=/usr/bin/ru.erhoof.ReLibre
 
 [X-Aurora-Application]
 IconMode=Crop
