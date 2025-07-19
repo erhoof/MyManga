@@ -1,3 +1,3 @@
 # ReLibre
 
-**Unofficial ReMange client for Aurora OS**
+**Unofficial ReManga client for Aurora OS**
