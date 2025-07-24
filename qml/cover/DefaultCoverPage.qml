@@ -8,18 +8,19 @@ Cover {
     anchors.fill: parent
     transparent: true
 
-    Component.onCompleted: {
+    Component.onCompleted: {        
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/latest?limit=1', true);
+        xhr.open("GET", 'https://api.remanga.org/api/v2/titles/sliders/popular-anime/', true);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     var jsonResponse = JSON.parse(xhr.responseText);
-                    for (var key in jsonResponse) {
-                        horizontalImage.source = 'https://api.anilibria.app/' + jsonResponse[key].poster.optimized.src
+                    for (var key in jsonResponse.titles) {
+                        horizontalImage.source = 'https://api.remanga.org' + jsonResponse.titles[key].title.cover.mid
                         verticalImage.source = horizontalImage.source
-                        horizontalName.text = jsonResponse[key].name.main
+                        horizontalName.text = jsonResponse.titles[key].title.main_name
+                        break;
                     }
                 }
             }
@@ -77,7 +78,7 @@ Cover {
             height: 70
 
             width: parent.width
-            text: qsTr("Last updated")
+            text: qsTr("Popular")
             font: Theme.fontSizeSmall
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignBottom

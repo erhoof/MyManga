@@ -1,15 +1,16 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Icon=ru.erhoof.ReLibre
-Exec=/usr/bin/ru.erhoof.ReLibre
-Name=ReLibre
+Icon=ru.erhoof.MyManga
+Exec=/usr/bin/ru.erhoof.MyManga
+Name=My Manga
+Name[ru]=Моя Манга
 
 [X-Application]
 Permissions=Audio;Internet
 OrganizationName=ru.erhoof
-ApplicationName=ReLibre
-ExecDBus=/usr/bin/ru.erhoof.ReLibre
+ApplicationName=MyManga
+ExecDBus=/usr/bin/ru.erhoof.MyManga
 
 [X-Aurora-Application]
 IconMode=Crop

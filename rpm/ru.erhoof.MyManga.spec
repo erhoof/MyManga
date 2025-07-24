@@ -1,9 +1,9 @@
-Name:       ru.erhoof.ReLibre
+Name:       ru.erhoof.MyManga
 Summary:    Unofficial ReManga Aurora OS Client
-Version:    0.3
+Version:    0.1
 Release:    1
 License:    GPLv3
-URL:        https://github.com/erhoof/ReLibre
+URL:        https://github.com/erhoof/MyManga
 Source0:    %{name}-%{version}.tar.bz2
 
 Requires:   sailfishsilica-qt5 >= 0.10.9

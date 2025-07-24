@@ -13,17 +13,19 @@ Page {
 
     AppBar {
         id: appBar
-        headerText: jsonData.name.main
+        headerText: jsonData.main_name
 
         AppBarSpacer {}
 
         AppBarButton {
-            text: jsonData.added_in_users_favorites
+            text: jsonData.count_bookmarks
             icon.source: "image://theme/icon-m-favorite"
+            enabled: false
         }
 
         AppBarButton {
             icon.source: "image://theme/icon-m-more"
+            enabled: false
         }
     }
 
@@ -51,7 +53,7 @@ Page {
             Image {
                 id: image
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: 'https://api.anilibria.app' + jsonData.poster.optimized.src
+                source: 'https://api.remanga.org/' + jsonData.cover.high
 
                 layer.enabled: true
                 layer.effect: OpacityMask {
@@ -75,7 +77,7 @@ Page {
 
                 Button {
                     Layout.fillWidth: true
-                    text: qsTr("Start watching")
+                    text: qsTr("Start reading")
 
                     onClicked: {
                         for (var key in jsonData.player.list) {
@@ -85,10 +87,13 @@ Page {
                             break;
                         }
                     }
+
+                    enabled: false
                 }
 
                 Button {
                     icon.source: "image://theme/icon-s-more"
+                    enabled: false
                 }
             }
 
@@ -109,13 +114,13 @@ Page {
 
                     Label {
                         width: parent.width
-                        text: jsonData.name.main
+                        text: jsonData.main_name
                         wrapMode: Text.WordWrap
                     }
 
                     Label {
                         width: parent.width
-                        text: jsonData.name.english
+                        text: jsonData.secondary_name
                         wrapMode: Text.WordWrap
                         color: Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
@@ -123,14 +128,15 @@ Page {
 
                     RowLayout {
                         Label {
-                            text: qsTr("Update:")
+                            text: qsTr("Issue year:")
                             font.pixelSize: Theme.fontSizeExtraSmall
                             color: Theme.secondaryColor
                         }
 
                         Label {
                             color: Theme.secondaryHighlightColor
-                            text: Qt.formatDateTime(jsonData.updated_at, "dd MMMM yyyy, hh:mm")
+                            //text: Qt.formatDateTime(jsonData.branches[0].new_chapter_date, "dd MMMM yyyy, hh:mm")
+                            text: jsonData.issue_year
                             font.pixelSize: Theme.fontSizeExtraSmall
                         }
                     }
@@ -150,26 +156,39 @@ Page {
 
                     RowLayout {
                         Label {
-                            text: qsTr("Season:")
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-
-                        Label {
-                            color: Theme.secondaryColor
-                            text: jsonData.year + " " + jsonData.season.description;
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-                    }
-
-                    RowLayout {
-                        Label {
                             text: qsTr("Type:")
                             font.pixelSize: Theme.fontSizeSmall
                         }
 
                         Label {
                             color: Theme.secondaryColor
-                            text: jsonData.type.description
+                            text: jsonData.type.name;
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
+
+                    RowLayout {
+                        Label {
+                            text: qsTr("Rating:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+
+                        Label {
+                            color: Theme.secondaryColor
+                            text: jsonData.avg_rating
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+                    }
+
+                    RowLayout {
+                        Label {
+                            text: qsTr("Age rating:")
+                            font.pixelSize: Theme.fontSizeSmall
+                        }
+
+                        Label {
+                            color: Theme.secondaryColor
+                            text: jsonData.age_limit.name;
                             font.pixelSize: Theme.fontSizeSmall
                         }
                     }
@@ -191,70 +210,17 @@ Page {
                     }
 
                     RowLayout {
-                        property var kindFilter: jsonData.members.filter(function(member) {
-                            return member.role.value === "voicing";
-                        })
-
-                        property string nicknames: kindFilter.map(function(member) {
-                            return member.nickname;
-                        }).join(", ")
-
-                        visible: nicknames.length != 0
-
                         Label {
-                            text: qsTr("Voice acting:")
+                            text: qsTr("Categories:")
                             font.pixelSize: Theme.fontSizeSmall
                         }
 
                         Label {
+                            property string joined: jsonData.categories.map(
+                                                        function(category) { return category.name; }).join(", ")
+
                             color: Theme.secondaryColor
-                            text: parent.nicknames
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-                    }
-
-                    RowLayout {
-                        property var kindFilter: jsonData.members.filter(function(member) {
-                            return member.role.value === "timing";
-                        })
-
-                        property string nicknames: kindFilter.map(function(member) {
-                            return member.nickname;
-                        }).join(", ")
-
-                        visible: nicknames.length != 0
-
-                        Label {
-                            text: qsTr("Timing:")
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-
-                        Label {
-                            color: Theme.secondaryColor
-                            text: parent.nicknames
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-                    }
-
-                    RowLayout {
-                        property var kindFilter: jsonData.members.filter(function(member) {
-                            return member.role.value === "editing";
-                        })
-
-                        property string nicknames: kindFilter.map(function(member) {
-                            return member.nickname;
-                        }).join(", ")
-
-                        visible: nicknames.length != 0
-
-                        Label {
-                            text: qsTr("Editors:")
-                            font.pixelSize: Theme.fontSizeSmall
-                        }
-
-                        Label {
-                            color: Theme.secondaryColor
-                            text: parent.nicknames
+                            text: joined
                             font.pixelSize: Theme.fontSizeSmall
                         }
                     }
@@ -267,7 +233,7 @@ Page {
 
                         Label {
                             color: Theme.secondaryColor
-                            text: jsonData.is_ongoing ? qsTr("Ongoing") : qsTr("Finished")
+                            text: jsonData.status.name
                             font.pixelSize: Theme.fontSizeSmall
                         }
                     }
@@ -290,13 +256,13 @@ Page {
                     Layout.fillWidth: true
 
                     Label {
-                        text: qsTr("Support AniLibria")
+                        text: qsTr("Support ReManga")
                     }
 
                     Text {
                         color: Theme.secondaryColor
                         wrapMode: Text.WordWrap
-                        text: qsTr("Liked our voice? Support us")
+                        text: qsTr("Liked our work? Support us")
                     }
                 }
 
@@ -307,7 +273,7 @@ Page {
             }
 
             ListView {
-                id: episodesListView
+                id: chaptersListView
 
                 anchors {
                     left: parent.left
@@ -319,14 +285,15 @@ Page {
                 spacing: Theme.paddingMedium
 
                 model: ListModel {
-                    id: episodesModel
-                    property var episode
-                    property var updateTime
-                    property var name
-                    property var jsonData
+                    id: chaptersModel
+                    property var id
+                    property var index
+                    property var chapter
+                    property var tome
+                    property var uploadDate
                 }
                 delegate: BackgroundItem {
-                    id: episodesItem
+                    id: chaptersItem
                     width: parent.width
                     height: 100
 
@@ -348,19 +315,19 @@ Page {
 
                                 Label {
                                     Layout.alignment: Qt.AlignLeft
-                                    text: qsTr("Episode") + " " + model.episode
+                                    text: qsTr("Chapter") + " " + model.chapter
                                 }
 
                                 Label {
                                     font.pixelSize: Theme.fontSizeSmall
                                     Layout.alignment: Qt.AlignRight
-                                    text: Qt.formatDateTime(model.updateTime, "dd MMMM yyyy, hh:mm")
+                                    text: Qt.formatDateTime(new Date(model.uploadDate), "dd MMMM yyyy, hh:mm")
                                     color: Theme.secondaryHighlightColor
                                 }
                             }
 
                             Label {
-                                text: model.name
+                                text: qsTr("Tome") + " " + model.tome
                                 color: Theme.secondaryColor
                                 font.pixelSize: Theme.fontSizeSmall
                             }
@@ -368,21 +335,67 @@ Page {
                     }
 
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("PlayerPage.qml"), {jsonData: page.jsonData, episodeJsonData: model.jsonData});
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", 'https://api.remanga.org/api/v2/titles/chapters/' + model.id, true)
+
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    var jsonResponse = JSON.parse(xhr.responseText);
+                                    pageStack.push(Qt.resolvedUrl("PlayerPage.qml"),
+                                                   {jsonData: page.jsonData,
+                                                    chapterJsonData: jsonResponse
+                                                   });
+                                }
+                            }
+                        };
+
+                        xhr.send();
                     }
                 }
 
+                function fillChaptersPage(page) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET",
+                             'https://api.remanga.org/api/v2/titles/chapters/?branch_id=' + jsonData.branches[0].id
+                             + '&ordering=index&count=10000000' + "&page=" + page, true);
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                var jsonResponse = JSON.parse(xhr.responseText);
+                                for (var key in jsonResponse.results) {
+                                    console.log("Adding chapter")
+                                    chaptersModel.append({
+                                        id: jsonResponse.results[key].id,
+                                        index: jsonResponse.results[key].index,
+                                        chapter: jsonResponse.results[key].chapter,
+                                        tome: jsonResponse.results[key].tome,
+                                        uploadDate: jsonResponse.results[key].upload_date
+                                    })
+                                }
+
+                                if(jsonResponse.next) {
+                                    console.log("got next:", jsonResponse.next)
+                                    return jsonResponse.next
+                                } else {
+                                    return -1
+                                }
+                            } else {
+                                return -1
+                            }
+                        }
+                    };
+
+                    xhr.send();
+                }
+
                 Component.onCompleted: {
-                    console.log("Loading episodes")
-                    for (var key in jsonData.episodes) {
-                        console.log("Adding episode", jsonData.episodes[key].ordinal)
-                        episodesModel.append({
-                            episode: jsonData.episodes[key].ordinal,
-                            updateTime: jsonData.episodes[key].updated_at,
-                            name: jsonData.episodes[key].name,
-                            jsonData: jsonData.episodes[key],
-                        })
-                    }
+                    var value = fillChaptersPage(1);
+                    /*while (value !== -1) {
+                        console.log("value:", value);
+                        value = fillChaptersPage(value);
+                    }*/
                 }
             }
         }

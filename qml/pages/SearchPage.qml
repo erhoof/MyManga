@@ -23,18 +23,18 @@ Page {
                 searchModel.clear()
 
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", 'https://api.anilibria.app/api/v1/app/search/releases?query=' + searchField.text, true);
+                xhr.open("GET", 'https://api.remanga.org/api/v2/search/?count=10&field=titles&query=' + searchField.text, true);
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             var jsonResponse = JSON.parse(xhr.responseText);
-                            for (var key in jsonResponse) {
+                            for (var key in jsonResponse.results) {
                                 searchModel.append({
-                                    image: 'https://api.anilibria.app' + jsonResponse[key].poster.optimized.src,
-                                    name: jsonResponse[key].name.main,
-                                    description: jsonResponse[key].description,
-                                    id: jsonResponse[key].id
+                                    image: 'https://api.remanga.org' + jsonResponse.results[key].cover.mid,
+                                    name: jsonResponse.results[key].main_name,
+                                    description: jsonResponse.results[key].another_name,
+                                    id: jsonResponse.results[key].dir
                                 })
                             }
                         }
@@ -48,6 +48,7 @@ Page {
 
         AppBarButton {
             icon.source: "image://theme/icon-m-filter"
+            enabled: false
         }
     }
 

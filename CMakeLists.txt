@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ru.erhoof.ReLibre CXX)
+project(ru.erhoof.MyManga CXX)
 
 find_package (Qt5 COMPONENTS Core Network Qml Gui Quick LinguistTools Multimedia REQUIRED)
 
@@ -10,12 +10,13 @@ pkg_search_module(AURORA auroraapp_i18n REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(short_name ReLibre)
+set(short_name MyManga)
 
 file(GLOB TsFiles "translations/*.ts")
 qt5_add_translation(QmFiles ${TsFiles})
 
 set(SOURCES
+    src/pagefetcher.cpp
     src/main.cpp
 )
 
@@ -64,6 +65,7 @@ file(GLOB_RECURSE IconFiles "icons" "*.png")
 set(RESOURCE_FILES ${IconFiles})
 
 file(GLOB_RECURSE QmlFiles "qml/*.qml")
+file(GLOB_RECURSE HeaderFiles "src/*.h")
 
 add_custom_target(distfiles
     SOURCES
@@ -73,7 +75,8 @@ add_custom_target(distfiles
         rpm/${PROJECT_NAME}.changes.run.in
         ${QmlFiles}
         ${TsFiles}
-        ${IconFiles})
+        ${IconFiles}
+        ${HeaderFiles})
 
 file(WRITE "${CMAKE_BINARY_DIR}/QtCreatorDeployment.txt"
     "${CMAKE_INSTALL_PREFIX}

@@ -75,7 +75,7 @@ BackgroundItem {
 
     onClicked: {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", 'https://api.anilibria.app/api/v1/anime/releases/' + model.id, true);
+        xhr.open("GET", 'https://api.remanga.org/api/v2/titles/' + model.id + '/', true);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
