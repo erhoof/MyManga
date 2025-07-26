@@ -133,7 +133,7 @@ Cover {
                 topPadding: -Theme.paddingSmall
 
                 width: parent.width - horizontalImage.width - Theme.paddingMedium
-                text: qsTr("Last updated")
+                text: qsTr("Popular")
                 font: Theme.fontSizeSmall
             }
 
@@ -143,7 +143,7 @@ Cover {
                 width: parent.width
                 color: Theme.secondaryColor
                 wrapMode: Text.WordWrap
-                text: qsTr("How anime sounds!")
+                text: qsTr("Read manga!")
             }
         }
     }
