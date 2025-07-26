@@ -4,22 +4,21 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="58"/>
+        <location filename="../qml/pages/AboutPage.qml" line="20"/>
         <source>About Application</source>
         <translation>About Application</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="68"/>
+        <location filename="../qml/pages/AboutPage.qml" line="30"/>
         <source>#descriptionText</source>
         <translation>&lt;p&gt;AniLibria Aurora OS Client&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>3-Clause BSD License</source>
-        <translation>3-Clause&#xa0;BSD License</translation>
+        <translation type="vanished">3-Clause&#xa0;BSD License</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="83"/>
+        <location filename="../qml/pages/AboutPage.qml" line="40"/>
         <source>#licenseText</source>
         <translation>&lt;p&gt;&lt;i&gt;Copyright&#xa0;(C)&#xa0;2022 com.github.erhoof&lt;/i&gt;&lt;/p&gt;
 &lt;p&gt;Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:&lt;/p&gt;
@@ -34,23 +33,214 @@
 <context>
     <name>DefaultCoverPage</name>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="47"/>
         <source>AniClient</source>
-        <translation>AniClient</translation>
+        <translation type="vanished">AniClient</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="81"/>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="136"/>
+        <source>Popular</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="146"/>
+        <source>Read manga!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="48"/>
         <source>AniClient</source>
-        <translation>AniClient</translation>
+        <translation type="vanished">AniClient</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="15"/>
+        <source>My Manga</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="30"/>
+        <location filename="../qml/pages/MainPage.qml" line="75"/>
+        <source>Using</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="39"/>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="49"/>
+        <source>Remove cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="63"/>
+        <source>Cache cleaning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="66"/>
+        <source>Delete all cached files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="87"/>
+        <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="93"/>
+        <source>History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="99"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="136"/>
+        <source>Popular</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="150"/>
+        <source>Trending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="164"/>
+        <source>New Chapters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="178"/>
+        <source>New Season</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="192"/>
+        <source>Top Manhwa - Korea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="206"/>
+        <source>Top Manga - Japan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="220"/>
+        <source>Top Manhua - China</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>AniClient</name>
+    <name>PlayerPage</name>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="26"/>
+        <source>Chapter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="27"/>
+        <source>Tome</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SchedulePage</name>
+    <message>
+        <location filename="../qml/pages/SchedulePage.qml" line="53"/>
+        <source>Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SchedulePage.qml" line="83"/>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SchedulePage.qml" line="116"/>
+        <source>Tomorrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SchedulePage.qml" line="148"/>
+        <source>Yesterday</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchPage</name>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="18"/>
+        <source>Title name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TitlePage</name>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="80"/>
+        <source>Start reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="131"/>
+        <source>Issue year:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="159"/>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="172"/>
+        <source>Rating:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="185"/>
+        <source>Age rating:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="198"/>
+        <source>Genres:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="214"/>
+        <source>Categories:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="230"/>
+        <source>State:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="259"/>
+        <source>Support ReManga</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="265"/>
+        <source>Liked our work? Support us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="318"/>
+        <source>Chapter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="330"/>
+        <source>Tome</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
