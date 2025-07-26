@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
 import QtGraphicalEffects 1.0
+import ru.erhoof.imagefetcher 1.0
 
 Page {
     id: page
@@ -11,6 +12,12 @@ Page {
 
     property var jsonData
 
+    onStatusChanged: {
+        if (PageStatus.Activating == status) {
+            startReadingButton.updateButton()
+        }
+    }
+
     AppBar {
         id: appBar
         headerText: jsonData.main_name
@@ -18,9 +25,31 @@ Page {
         AppBarSpacer {}
 
         AppBarButton {
+            property var isFavorite
             text: jsonData.count_bookmarks
-            icon.source: "image://theme/icon-m-favorite"
-            enabled: false
+
+            PageFetcher {
+                id: pageFetcher
+            }
+
+            Component.onCompleted: {
+                isFavorite = pageFetcher.isFavorite(jsonData.dir)
+                if(isFavorite) {
+                    icon.source = "image://theme/icon-m-favorite-selected"
+                } else {
+                    icon.source = "image://theme/icon-m-favorite"
+                }
+            }
+
+            onClicked: {
+                isFavorite = !isFavorite
+                pageFetcher.setFavorite(jsonData.dir, isFavorite, jsonData.cover.low);
+                if(isFavorite) {
+                    icon.source = "image://theme/icon-m-favorite-selected"
+                } else {
+                    icon.source = "image://theme/icon-m-favorite"
+                }
+            }
         }
 
         AppBarButton {
@@ -71,31 +100,70 @@ Page {
                 }
             }
 
-            /*RowLayout {
+            RowLayout {
                 width: parent.width
                 spacing: Theme.paddingMedium
 
                 Button {
+                    id: startReadingButton
                     Layout.fillWidth: true
                     text: qsTr("Start reading")
+                    enabled: false
+
+                    property int savedID: 0
+                    property int savedPage: 0
 
                     onClicked: {
-                        for (var key in jsonData.player.list) {
-                            var page = Qt.createComponent("PlayerPage.qml")
-                                .createObject(this, {jsonData: jsonData, episodeJsonData: jsonData.player.list[key]});
-                            pageStack.push(page)
-                            break;
+                        var id = savedID;
+                        if(!savedID) {
+                            if(!chaptersModel.count) {
+                                return
+                            }
+
+                            id = chaptersModel.get(0).id
                         }
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", 'https://api.remanga.org/api/v2/titles/chapters/' + id, true)
+
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    var jsonResponse = JSON.parse(xhr.responseText);
+                                    pageStack.push(Qt.resolvedUrl("PlayerPage.qml"),
+                                                   {jsonData: page.jsonData,
+                                                    chapterJsonData: jsonResponse,
+                                                    requestedPage: savedPage
+                                                   });
+                                }
+                            }
+                        };
+
+                        xhr.send();
                     }
 
-                    enabled: false
+                    function updateButton() {
+                        var status = pageFetcher.getReadStatus(jsonData.id)
+                        if(!status.status) {
+                            text = qsTr("Start reading");
+                            return;
+                        }
+
+                        text = qsTr("Continue")
+                                + " - "
+                                + qsTr("Tome") + " " + status.status.tome
+                                + ", " + qsTr("Chapter") + " " + status.status.chapter;
+
+                        savedID = status.status.branchID
+                        savedPage = status.status.page
+                    }
                 }
 
                 Button {
                     icon.source: "image://theme/icon-s-more"
                     enabled: false
                 }
-            }*/
+            }
 
             Rectangle {
                 width: parent.width
@@ -272,6 +340,46 @@ Page {
                 }
             }
 
+            RowLayout {
+                id: pageRow
+                width: parent.width
+                spacing: Theme.paddingMedium
+                Layout.alignment: Qt.AlignRight
+
+                property int currentPage: 0
+                property int lastPage: 0
+
+                Label {
+                    id: pageLabel
+                    Layout.fillWidth: true
+                    text: qsTr("Updating count")
+                }
+
+                IconButton {
+                    icon.source: "image://theme/icon-m-previous"
+                    enabled: (pageRow.currentPage !== 0)
+
+                    onClicked: {
+                        chaptersModel.clear()
+                        pageRow.currentPage -= 1
+
+                        chaptersListView.fillChaptersPage(pageRow.currentPage + 1)
+                    }
+                }
+
+                IconButton {
+                    icon.source: "image://theme/icon-m-next"
+                    enabled: ((pageRow.lastPage - 1) !== pageRow.currentPage)
+
+                    onClicked: {
+                        chaptersModel.clear()
+                        pageRow.currentPage += 1
+
+                        chaptersListView.fillChaptersPage(pageRow.currentPage + 1)
+                    }
+                }
+            }
+
             ListView {
                 id: chaptersListView
 
@@ -287,6 +395,7 @@ Page {
                 model: ListModel {
                     id: chaptersModel
                     property var id
+                    property var name
                     property var index
                     property var chapter
                     property var tome
@@ -344,7 +453,8 @@ Page {
                                     var jsonResponse = JSON.parse(xhr.responseText);
                                     pageStack.push(Qt.resolvedUrl("PlayerPage.qml"),
                                                    {jsonData: page.jsonData,
-                                                    chapterJsonData: jsonResponse
+                                                    chapterJsonData: jsonResponse,
+                                                    requestedPage: 0
                                                    });
                                 }
                             }
@@ -355,34 +465,37 @@ Page {
                 }
 
                 function fillChaptersPage(page) {
+                    pageLabel.text = qsTr("Page") + " " + (pageRow.currentPage + 1) + " / " + pageRow.lastPage
+                    console.log("page", page)
+
                     var xhr = new XMLHttpRequest();
                     xhr.open("GET",
                              'https://api.remanga.org/api/v2/titles/chapters/?branch_id=' + jsonData.branches[0].id
-                             + '&ordering=index&count=10000000' + "&page=" + page, true);
+                             + '&ordering=index&count=20' + "&page=" + page, true);
 
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             if (xhr.status === 200) {
                                 var jsonResponse = JSON.parse(xhr.responseText);
                                 for (var key in jsonResponse.results) {
-                                    console.log("Adding chapter")
                                     chaptersModel.append({
                                         id: jsonResponse.results[key].id,
+                                        name: jsonResponse.results[key].name,
                                         index: jsonResponse.results[key].index,
                                         chapter: jsonResponse.results[key].chapter,
                                         tome: jsonResponse.results[key].tome,
                                         uploadDate: jsonResponse.results[key].upload_date
-                                    })
+                                    })                                    
+                                }
+
+                                if(jsonResponse.results) {
+                                    startReadingButton.enabled = true
                                 }
 
                                 if(jsonResponse.next) {
-                                    console.log("got next:", jsonResponse.next)
-                                    return jsonResponse.next
-                                } else {
-                                    return -1
+                                    //fillChaptersPage(jsonResponse.next)
+                                    //return jsonResponse.next
                                 }
-                            } else {
-                                return -1
                             }
                         }
                     };
@@ -391,11 +504,8 @@ Page {
                 }
 
                 Component.onCompleted: {
-                    var value = fillChaptersPage(1);
-                    /*while (value !== -1) {
-                        console.log("value:", value);
-                        value = fillChaptersPage(value);
-                    }*/
+                    pageRow.lastPage = jsonData.branches[0].count_chapters / 20
+                    fillChaptersPage(1);
                 }
             }
         }

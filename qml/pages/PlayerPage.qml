@@ -12,10 +12,12 @@ Page {
 
     property var jsonData
     property var chapterJsonData
+    property var requestedPage
+
     property var currentPage
 
     Component.onCompleted: {
-        currentPage = 0
+        currentPage = requestedPage
         pageImage.updateImage(currentPage);
     }
 
@@ -74,7 +76,8 @@ Page {
 
         VerticalScrollDecorator { flickable: pageImage }*/
 
-        BackgroundItem {
+        MouseArea {
+            id: area
             anchors {
                 top: appBar.bottom
                 bottom: parent.bottom
@@ -96,15 +99,26 @@ Page {
                 function updateImage(id) {
                     var url = chapterJsonData.pages[currentPage][0].link;
                     pageFetcher.requestPage(url);
+
+                    pageFetcher.setReadStatus(jsonData.id, chapterJsonData.id, chapterJsonData.tome, chapterJsonData.chapter, currentPage)
                 }
             }
 
             onClicked: {
-                if(!(currentPage !== (chapterJsonData.pages.length - 1))) {
-                    return
+                if(mouse.x > area.width / 2) {
+                    if(!(currentPage !== (chapterJsonData.pages.length - 1))) {
+                        return
+                    }
+
+                    currentPage += 1
+                } else {
+                    if(currentPage === 0) {
+                        return
+                    }
+
+                    currentPage -= 1
                 }
 
-                currentPage += 1
                 pageImage.updateImage(currentPage)
             }
         }

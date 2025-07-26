@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
 import QtGraphicalEffects 1.0
+import ru.erhoof.imagefetcher 1.0
 
 Column {
     anchors {
@@ -13,10 +14,26 @@ Column {
 
     property string sliderTitle: "Default Title"
     property string sliderID: "0"
+    property string sliderType: ""
+
+    PageFetcher {
+        id: pageFetcher
+    }
 
     function update() {
-        //sliderListView.model.append({image: 'https://api.remanga.org/media/titles/sss-level-hunter/cover_dfc4f213.webp', id: 'test'});
-        //return;
+        sliderModel.clear()
+        if(sliderType == "favorites") {
+            console.log("reading favs")
+            var list = pageFetcher.getFavorites()
+            console.log(list)
+            for (var key in list) {
+                sliderListView.model.append({
+                    image: 'https://api.remanga.org' + list[key].cover,
+                    id: list[key].id
+                })
+            }
+            return;
+        }
 
         console.log("Parsing id ", sliderID)
 

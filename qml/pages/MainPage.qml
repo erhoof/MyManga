@@ -103,6 +103,11 @@ Page {
         }
     }
 
+    onStatusChanged: {
+        if (PageStatus.Activating == status) {
+            favoritesSlider.item.update()
+        }
+    }
 
     SilicaFlickable {
         id: mainFlickable
@@ -124,6 +129,21 @@ Page {
             id: column
             width: parent.width - Theme.horizontalPageMargin
             spacing: Theme.paddingLarge
+
+            Loader {
+                id: favoritesSlider
+                source: "../components/TitleSlider.qml"
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                onLoaded: {
+                    item.sliderTitle = qsTr("Favorites")
+                    item.sliderID = ""
+                    item.sliderType = "favorites"
+                }
+            }
 
             Loader {
                 source: "../components/TitleSlider.qml"
