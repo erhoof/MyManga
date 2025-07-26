@@ -71,7 +71,7 @@ Page {
                 }
             }
 
-            RowLayout {
+            /*RowLayout {
                 width: parent.width
                 spacing: Theme.paddingMedium
 
@@ -95,7 +95,7 @@ Page {
                     icon.source: "image://theme/icon-s-more"
                     enabled: false
                 }
-            }
+            }*/
 
             Rectangle {
                 width: parent.width

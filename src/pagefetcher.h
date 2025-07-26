@@ -11,6 +11,8 @@ public:
     PageFetcher(QObject *parent = nullptr);
 
     Q_INVOKABLE void requestPage(const QString &url);
+    Q_INVOKABLE void purgeCache();
+    Q_INVOKABLE double getCacheSize();
 
 signals:
     void pageFetched(QString path);

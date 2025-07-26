@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
 import QtGraphicalEffects 1.0
+import ru.erhoof.imagefetcher 1.0
 
 Page {
     id: page
@@ -25,7 +26,10 @@ Page {
         AppBarButton {
             icon.source: "image://theme/icon-m-more"
 
-            onClicked: popup.open()
+            onClicked: {
+                cacheItem.hint = qsTr("Using") + " " + (Math.round(pageFetcher.getCacheSize()* 100) / 100) + " MB";
+                popup.open()
+            }
         }
 
         PopupMenu {
@@ -39,6 +43,45 @@ Page {
             }
 
             PopupMenuDividerItem {}
+
+            PopupMenuItem {
+                id: cacheItem
+                text: qsTr("Remove cache")
+
+                icon.source: "image://theme/icon-m-delete"
+
+                PageFetcher {
+                    id: pageFetcher
+                }
+
+                Component {
+                    id: cacheDialog
+
+                    Dialog {
+                        DialogHeader {
+                            id: header
+                            title: qsTr("Cache cleaning")
+                        }
+                        Label {
+                            text: qsTr("Delete all cached files?")
+                            anchors.top: header.bottom
+                            x: Theme.horizontalPageMargin
+                            color: Theme.highlightColor
+                        }
+
+                        onDone: {
+                            if (result == DialogResult.Accepted) {
+                                pageFetcher.purgeCache();
+                                cacheItem.hint = qsTr("Using") + " " + (Math.round(pageFetcher.getCacheSize()* 100) / 100) + " MB";
+                            }
+                        }
+                    }
+                }
+
+                onClicked: {
+                    pageStack.push(cacheDialog)
+                }
+            }
 
             PopupMenuItem {
                 text: qsTr("Favorites")

@@ -4,6 +4,7 @@
 #include <QStandardPaths>
 #include <QCryptographicHash>
 #include <QFileInfo>
+#include <QDir>
 
 #include "pagefetcher.h"
 
@@ -16,12 +17,17 @@ PageFetcher::PageFetcher(QObject *parent) : QObject(parent),
 void PageFetcher::requestPage(const QString &url)
 {
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir dir(path + "/cache");
+    if(!dir.exists()) {
+        qDebug() << "Creating cache directory";
+        dir.mkpath(".");
+    }
 
     QUrl qUrl(url);
     auto nameChecksum = getChecksum(url);
     auto fileExtension = QFileInfo(qUrl.fileName()).suffix();
 
-    auto fullPath = path + "/" + nameChecksum + fileExtension;
+    auto fullPath = path + "/cache/" + nameChecksum + + "." + fileExtension;
     qDebug() << "Reading file '" << fullPath << "'";
 
     QFile file(fullPath);
@@ -37,6 +43,40 @@ void PageFetcher::requestPage(const QString &url)
 
     lastPath = fullPath;
     manager->get(request);
+}
+
+Q_INVOKABLE void PageFetcher::purgeCache() {
+    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir dir(path + "/cache");
+    if(!dir.exists()) {
+        return;
+    }
+
+    foreach (QString file, dir.entryList(QDir::NoDotAndDotDot | QDir::AllEntries)) {
+        QString filePath = dir.absoluteFilePath(file);
+        if (QFileInfo(filePath).isDir()) {
+            continue;
+        }
+
+        QFile::remove(filePath);
+    }
+}
+
+Q_INVOKABLE double PageFetcher::getCacheSize() {
+    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir dir(path + "/cache");
+    if(!dir.exists()) {
+        return 0.0;
+    }
+
+    double totalSize = 0.0;
+    QFileInfoList fileList = dir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
+
+    foreach (const QFileInfo &fileInfo, fileList) {
+        totalSize += fileInfo.size(); // Size in bytes
+    }
+
+    return totalSize / (1024 * 1024);
 }
 
 QString PageFetcher::getChecksum(const QString &value) {
