@@ -37,8 +37,12 @@
         <translation type="vanished">AniClient</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="81"/>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="136"/>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="94"/>
+        <source>Trending</source>
+        <translation>В тренде</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="149"/>
         <source>Popular</source>
         <translation>Популярное</translation>
     </message>
@@ -47,7 +51,7 @@
         <translation type="vanished">Последнее</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="159"/>
         <source>Read manga!</source>
         <translation>Читай мангу!</translation>
     </message>
@@ -64,79 +68,74 @@
         <translation>Моя Манга</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="30"/>
-        <location filename="../qml/pages/MainPage.qml" line="75"/>
         <source>Using</source>
-        <translation>Занято</translation>
+        <translation type="vanished">Занято</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="39"/>
+        <location filename="../qml/pages/MainPage.qml" line="38"/>
         <source>Profile</source>
         <translation>Профиль</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="49"/>
         <source>Remove cache</source>
-        <translation>Удалить кеш</translation>
+        <translation type="vanished">Удалить кеш</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="63"/>
         <source>Cache cleaning</source>
-        <translation>Очистка кеша</translation>
+        <translation type="vanished">Очистка кеша</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="66"/>
         <source>Delete all cached files?</source>
-        <translation>Удалить весь кеш?</translation>
+        <translation type="vanished">Удалить весь кеш?</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="87"/>
-        <location filename="../qml/pages/MainPage.qml" line="142"/>
+        <location filename="../qml/pages/MainPage.qml" line="47"/>
+        <location filename="../qml/pages/MainPage.qml" line="106"/>
         <source>Favorites</source>
         <translation>Избранное</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="93"/>
+        <location filename="../qml/pages/MainPage.qml" line="53"/>
         <source>History</source>
         <translation>История</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="99"/>
+        <location filename="../qml/pages/MainPage.qml" line="59"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="156"/>
+        <location filename="../qml/pages/MainPage.qml" line="120"/>
         <source>Popular</source>
         <translation>Популярное</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="170"/>
+        <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Trending</source>
         <translation>В тренде</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="184"/>
+        <location filename="../qml/pages/MainPage.qml" line="148"/>
         <source>New Chapters</source>
         <translation>Новые главы</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="198"/>
+        <location filename="../qml/pages/MainPage.qml" line="162"/>
         <source>New Season</source>
         <translation>Новый сезон</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="212"/>
+        <location filename="../qml/pages/MainPage.qml" line="176"/>
         <source>Top Manhwa - Korea</source>
         <translation>Топ манхв - Корея</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="226"/>
+        <location filename="../qml/pages/MainPage.qml" line="190"/>
         <source>Top Manga - Japan</source>
         <translation>Топ манги - Япония</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="240"/>
+        <location filename="../qml/pages/MainPage.qml" line="204"/>
         <source>Top Manhua - China</source>
         <translation>Топ маньхуа - Китай</translation>
     </message>
@@ -180,88 +179,162 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="18"/>
+        <location filename="../qml/pages/SearchPage.qml" line="23"/>
         <source>Title name</source>
         <translation>Название тайтла</translation>
     </message>
 </context>
 <context>
+    <name>SettingsPage</name>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="23"/>
+        <source>Settings</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="40"/>
+        <source>Content preferences</source>
+        <translation>Настройки контента</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <source>Disable tags blacklist</source>
+        <translation>Отключить черный список тегов</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="46"/>
+        <source>May enable explicit content</source>
+        <translation>Может включить откровенный контент</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="55"/>
+        <source>Disable artwork blacklist</source>
+        <translation>Отключить черный список обложек</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="56"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
+        <source>May enable explicit artworks</source>
+        <translation>Может включить откровенные обложки</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="65"/>
+        <source>Disable age restrictions</source>
+        <translation>Отключить ограничения возраста</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
+        <source>Remove data</source>
+        <translation>Удаление данных</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="80"/>
+        <source>Pages cache</source>
+        <translation>Кеш страниц</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="88"/>
+        <source>Cache cleaning</source>
+        <translation>Очистка кеша</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
+        <source>Delete all cached files?</source>
+        <translation>Удалить весь кеш?</translation>
+    </message>
+</context>
+<context>
     <name>TitlePage</name>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="110"/>
-        <location filename="../qml/pages/TitlePage.qml" line="148"/>
+        <location filename="../qml/pages/TitlePage.qml" line="140"/>
+        <location filename="../qml/pages/TitlePage.qml" line="178"/>
         <source>Start reading</source>
         <translation>Начать читать</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="152"/>
+        <location filename="../qml/pages/TitlePage.qml" line="182"/>
         <source>Continue</source>
         <translation>Продолжить</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="199"/>
+        <location filename="../qml/pages/TitlePage.qml" line="229"/>
         <source>Issue year:</source>
         <translation>Год выпуска:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="227"/>
+        <location filename="../qml/pages/TitlePage.qml" line="257"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="240"/>
+        <location filename="../qml/pages/TitlePage.qml" line="270"/>
         <source>Rating:</source>
         <translation>Рейтинг:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="253"/>
+        <location filename="../qml/pages/TitlePage.qml" line="283"/>
         <source>Age rating:</source>
         <translation>Возрастной рейтинг:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="266"/>
+        <location filename="../qml/pages/TitlePage.qml" line="296"/>
         <source>Genres:</source>
         <translation>Жанры:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="282"/>
+        <location filename="../qml/pages/TitlePage.qml" line="312"/>
         <source>Categories:</source>
         <translation>Категории:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="298"/>
+        <location filename="../qml/pages/TitlePage.qml" line="328"/>
         <source>State:</source>
         <translation>Статус:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="327"/>
+        <location filename="../qml/pages/TitlePage.qml" line="357"/>
         <source>Support ReManga</source>
         <translation>Поддержи ReManga</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="333"/>
+        <location filename="../qml/pages/TitlePage.qml" line="363"/>
         <source>Liked our work? Support us</source>
         <translation>Нравится наша работа? Поддержи</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="355"/>
+        <location filename="../qml/pages/TitlePage.qml" line="385"/>
         <source>Updating count</source>
         <translation>Обновление</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="468"/>
+        <location filename="../qml/pages/TitlePage.qml" line="498"/>
         <source>Page</source>
         <translation>Страница</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="155"/>
-        <location filename="../qml/pages/TitlePage.qml" line="427"/>
+        <location filename="../qml/pages/TitlePage.qml" line="185"/>
+        <location filename="../qml/pages/TitlePage.qml" line="457"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="154"/>
-        <location filename="../qml/pages/TitlePage.qml" line="439"/>
+        <location filename="../qml/pages/TitlePage.qml" line="27"/>
+        <source>Forbidden tags</source>
+        <translation>Запрещенные теги</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="39"/>
+        <source>18+ Title</source>
+        <translation>Тайтл 18+</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="103"/>
+        <source>Disabled in app settings</source>
+        <translation>Отключено в настройках</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="184"/>
+        <location filename="../qml/pages/TitlePage.qml" line="469"/>
         <source>Tome</source>
         <translation>Том</translation>
     </message>

@@ -254,6 +254,51 @@ void PageFetcher::setReadStatus(const QString &id,
     file.close();
 }
 
+QString PageFetcher::getSetting(const QString &id) {
+    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    auto fullPath = path + "/settings.json";
+
+    QFile file(fullPath);
+    QJsonDocument jsonDoc;
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray jsonData = file.readAll();
+        file.close();
+
+        jsonDoc = QJsonDocument::fromJson(jsonData);
+    }
+
+    if(!jsonDoc.isObject() || !jsonDoc.object()[id].isString()) {
+        return "";
+    }
+
+    return jsonDoc.object()[id].toString();
+}
+
+void PageFetcher::setSetting(const QString &id, const QString &value) {
+    auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    auto fullPath = path + "/settings.json";
+
+    QFile file(fullPath);
+    QJsonDocument jsonDoc;
+    if (file.open(QIODevice::ReadOnly)) {
+        QByteArray jsonData = file.readAll();
+        file.close();
+
+        jsonDoc = QJsonDocument::fromJson(jsonData);
+    }
+
+    QJsonObject jsonObject = jsonDoc.object();
+    jsonObject[id] = value;
+
+    if (!file.open(QIODevice::WriteOnly)) {
+        qWarning() << "Could not open output file for writing:" << file.errorString();
+        return;
+    }
+
+    file.write(QJsonDocument(jsonObject).toJson());
+    file.close();
+}
+
 QString PageFetcher::getChecksum(const QString &value) {
     QByteArray hash = QCryptographicHash::hash(value.toUtf8(), QCryptographicHash::Sha256);
     return hash.toHex();

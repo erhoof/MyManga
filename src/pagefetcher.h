@@ -27,6 +27,9 @@ public:
                                    const QString &chapter,
                                    const QString &page);
 
+    Q_INVOKABLE QString getSetting(const QString &id);
+    Q_INVOKABLE void setSetting(const QString &id, const QString &value);
+
 signals:
     void pageFetched(QString path);
 

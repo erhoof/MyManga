@@ -37,13 +37,17 @@
         <translation type="vanished">AniClient</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="81"/>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="136"/>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="94"/>
+        <source>Trending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="149"/>
         <source>Popular</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCoverPage.qml" line="159"/>
         <source>Read manga!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -60,79 +64,58 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="30"/>
-        <location filename="../qml/pages/MainPage.qml" line="75"/>
-        <source>Using</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="39"/>
+        <location filename="../qml/pages/MainPage.qml" line="38"/>
         <source>Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="49"/>
-        <source>Remove cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="63"/>
-        <source>Cache cleaning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="66"/>
-        <source>Delete all cached files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="87"/>
-        <location filename="../qml/pages/MainPage.qml" line="142"/>
+        <location filename="../qml/pages/MainPage.qml" line="47"/>
+        <location filename="../qml/pages/MainPage.qml" line="106"/>
         <source>Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="93"/>
+        <location filename="../qml/pages/MainPage.qml" line="53"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="99"/>
+        <location filename="../qml/pages/MainPage.qml" line="59"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="156"/>
+        <location filename="../qml/pages/MainPage.qml" line="120"/>
         <source>Popular</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="170"/>
+        <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Trending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="184"/>
+        <location filename="../qml/pages/MainPage.qml" line="148"/>
         <source>New Chapters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="198"/>
+        <location filename="../qml/pages/MainPage.qml" line="162"/>
         <source>New Season</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="212"/>
+        <location filename="../qml/pages/MainPage.qml" line="176"/>
         <source>Top Manhwa - Korea</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="226"/>
+        <location filename="../qml/pages/MainPage.qml" line="190"/>
         <source>Top Manga - Japan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="240"/>
+        <location filename="../qml/pages/MainPage.qml" line="204"/>
         <source>Top Manhua - China</source>
         <translation type="unfinished"></translation>
     </message>
@@ -176,88 +159,162 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="18"/>
+        <location filename="../qml/pages/SearchPage.qml" line="23"/>
         <source>Title name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPage</name>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="23"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="40"/>
+        <source>Content preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <source>Disable tags blacklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="46"/>
+        <source>May enable explicit content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="55"/>
+        <source>Disable artwork blacklist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="56"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
+        <source>May enable explicit artworks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="65"/>
+        <source>Disable age restrictions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
+        <source>Remove data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="80"/>
+        <source>Pages cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="88"/>
+        <source>Cache cleaning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
+        <source>Delete all cached files?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TitlePage</name>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="110"/>
-        <location filename="../qml/pages/TitlePage.qml" line="148"/>
+        <location filename="../qml/pages/TitlePage.qml" line="140"/>
+        <location filename="../qml/pages/TitlePage.qml" line="178"/>
         <source>Start reading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="152"/>
+        <location filename="../qml/pages/TitlePage.qml" line="182"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="199"/>
+        <location filename="../qml/pages/TitlePage.qml" line="229"/>
         <source>Issue year:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="227"/>
+        <location filename="../qml/pages/TitlePage.qml" line="257"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="240"/>
+        <location filename="../qml/pages/TitlePage.qml" line="270"/>
         <source>Rating:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="253"/>
+        <location filename="../qml/pages/TitlePage.qml" line="283"/>
         <source>Age rating:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="266"/>
+        <location filename="../qml/pages/TitlePage.qml" line="296"/>
         <source>Genres:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="282"/>
+        <location filename="../qml/pages/TitlePage.qml" line="312"/>
         <source>Categories:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="298"/>
+        <location filename="../qml/pages/TitlePage.qml" line="328"/>
         <source>State:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="327"/>
+        <location filename="../qml/pages/TitlePage.qml" line="357"/>
         <source>Support ReManga</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="333"/>
+        <location filename="../qml/pages/TitlePage.qml" line="363"/>
         <source>Liked our work? Support us</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="355"/>
+        <location filename="../qml/pages/TitlePage.qml" line="385"/>
         <source>Updating count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="468"/>
+        <location filename="../qml/pages/TitlePage.qml" line="498"/>
         <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="155"/>
-        <location filename="../qml/pages/TitlePage.qml" line="427"/>
+        <location filename="../qml/pages/TitlePage.qml" line="185"/>
+        <location filename="../qml/pages/TitlePage.qml" line="457"/>
         <source>Chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="154"/>
-        <location filename="../qml/pages/TitlePage.qml" line="439"/>
+        <location filename="../qml/pages/TitlePage.qml" line="27"/>
+        <source>Forbidden tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="39"/>
+        <source>18+ Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="103"/>
+        <source>Disabled in app settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/TitlePage.qml" line="184"/>
+        <location filename="../qml/pages/TitlePage.qml" line="469"/>
         <source>Tome</source>
         <translation type="unfinished"></translation>
     </message>

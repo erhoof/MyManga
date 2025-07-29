@@ -43,8 +43,16 @@ Column {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
+                    var enableArtwork = (pageFetcher.getSetting("artwork-blacklist") === "true");
+
                     var jsonResponse = JSON.parse(xhr.responseText);
                     for (var key in jsonResponse.titles) {
+                        if(!enableArtwork) {
+                            if(jsonResponse.titles[key].title.is_erotic || jsonResponse.titles[key].title.is_yaoi) {
+                                continue;
+                            }
+                        }
+
                         sliderListView.model.append({
                             image: 'https://api.remanga.org' + jsonResponse.titles[key].title.cover.low,
                             id: jsonResponse.titles[key].title.dir

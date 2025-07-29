@@ -2,21 +2,34 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.0
+import ru.erhoof.imagefetcher 1.0
 
 Cover {
     objectName: "defaultCover"
     anchors.fill: parent
     transparent: true
 
+    PageFetcher {
+        id: pageFetcher
+    }
+
     Component.onCompleted: {        
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", 'https://api.remanga.org/api/v2/titles/sliders/popular-anime/', true);
+        xhr.open("GET", 'https://api.remanga.org/api/v2/titles/sliders/35/', true);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
+                    var enableArtwork = (pageFetcher.getSetting("artwork-blacklist") === "true");
+
                     var jsonResponse = JSON.parse(xhr.responseText);
                     for (var key in jsonResponse.titles) {
+                        if(!enableArtwork) {
+                            if(jsonResponse.titles[key].title.is_erotic || jsonResponse.titles[key].title.is_yaoi) {
+                                continue;
+                            }
+                        }
+
                         horizontalImage.source = 'https://api.remanga.org' + jsonResponse.titles[key].title.cover.mid
                         verticalImage.source = horizontalImage.source
                         horizontalName.text = jsonResponse.titles[key].title.main_name
@@ -78,7 +91,7 @@ Cover {
             height: 70
 
             width: parent.width
-            text: qsTr("Popular")
+            text: qsTr("Trending")
             font: Theme.fontSizeSmall
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignBottom

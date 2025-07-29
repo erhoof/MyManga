@@ -12,9 +12,37 @@ Page {
 
     property var jsonData
 
+    PageFetcher {
+        id: pageFetcher
+    }
+
     onStatusChanged: {
         if (PageStatus.Activating == status) {
             startReadingButton.updateButton()
+
+            if(pageFetcher.getSetting("tag-blacklist") !== "true") {
+                for (var key in jsonData.categories) {
+                    if (jsonData.categories[key].dir === "hentai") {
+                        placeholderFlickable.enabled = true
+                        placeholderFlickable.text = qsTr("Forbidden tags")
+                        column.visible = false
+                        column.enabled = false
+                        favoriteButton.enabled = false
+                        return
+                    }
+                }
+            }
+
+            if(pageFetcher.getSetting("age-blacklist") !== "true") {
+                if (jsonData.age_limit.name === "18+") {
+                    placeholderFlickable.enabled = true
+                    placeholderFlickable.text = qsTr("18+ Title")
+                    column.visible = false
+                    column.enabled = false
+                    favoriteButton.enabled = false
+                    return
+                }
+            }
         }
     }
 
@@ -25,12 +53,9 @@ Page {
         AppBarSpacer {}
 
         AppBarButton {
+            id: favoriteButton
             property var isFavorite
             text: jsonData.count_bookmarks
-
-            PageFetcher {
-                id: pageFetcher
-            }
 
             Component.onCompleted: {
                 isFavorite = pageFetcher.isFavorite(jsonData.dir)
@@ -59,6 +84,7 @@ Page {
     }
 
     SilicaFlickable {
+        id: mainFlickable
         anchors {
             top: appBar.bottom
             bottom: parent.bottom
@@ -68,10 +94,14 @@ Page {
             topMargin: Theme.paddingMedium
             leftMargin: Theme.horizontalPageMargin
         }
-
         contentHeight: column.height + Theme.paddingLarge
 
         VerticalScrollDecorator { flickable: column }
+
+        ViewPlaceholder {
+            id: placeholderFlickable
+            hintText: qsTr("Disabled in app settings")
+        }
 
         Column {
             id: column

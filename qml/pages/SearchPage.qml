@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Layouts 1.1
 import Aurora.Controls 1.0
+import ru.erhoof.imagefetcher 1.0
 
 Page {
     id: page
@@ -9,6 +10,10 @@ Page {
     allowedOrientations: defaultAllowedOrientations
 
     property var splitViewRef
+
+    PageFetcher {
+        id: pageFetcher
+    }
 
     AppBar {
         id: searchHeader
@@ -28,8 +33,16 @@ Page {
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
+                            var enableArtwork = (pageFetcher.getSetting("artwork-blacklist") === "true");
+
                             var jsonResponse = JSON.parse(xhr.responseText);
                             for (var key in jsonResponse.results) {
+                                if(!enableArtwork) {
+                                    if(jsonResponse.results[key].is_erotic || jsonResponse.results[key].is_yaoi) {
+                                        continue;
+                                    }
+                                }
+
                                 searchModel.append({
                                     image: 'https://api.remanga.org' + jsonResponse.results[key].cover.mid,
                                     name: jsonResponse.results[key].main_name,

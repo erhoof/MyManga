@@ -1,6 +1,6 @@
 Name:       ru.erhoof.MyManga
 Summary:    Unofficial ReManga Aurora OS Client
-Version:    0.3.1
+Version:    0.4
 Release:    1
 License:    GPLv3
 URL:        https://github.com/erhoof/MyManga

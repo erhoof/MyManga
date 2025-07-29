@@ -27,7 +27,6 @@ Page {
             icon.source: "image://theme/icon-m-more"
 
             onClicked: {
-                cacheItem.hint = qsTr("Using") + " " + (Math.round(pageFetcher.getCacheSize()* 100) / 100) + " MB";
                 popup.open()
             }
         }
@@ -45,45 +44,6 @@ Page {
             PopupMenuDividerItem {}
 
             PopupMenuItem {
-                id: cacheItem
-                text: qsTr("Remove cache")
-
-                icon.source: "image://theme/icon-m-delete"
-
-                PageFetcher {
-                    id: pageFetcher
-                }
-
-                Component {
-                    id: cacheDialog
-
-                    Dialog {
-                        DialogHeader {
-                            id: header
-                            title: qsTr("Cache cleaning")
-                        }
-                        Label {
-                            text: qsTr("Delete all cached files?")
-                            anchors.top: header.bottom
-                            x: Theme.horizontalPageMargin
-                            color: Theme.highlightColor
-                        }
-
-                        onDone: {
-                            if (result == DialogResult.Accepted) {
-                                pageFetcher.purgeCache();
-                                cacheItem.hint = qsTr("Using") + " " + (Math.round(pageFetcher.getCacheSize()* 100) / 100) + " MB";
-                            }
-                        }
-                    }
-                }
-
-                onClicked: {
-                    pageStack.push(cacheDialog)
-                }
-            }
-
-            PopupMenuItem {
                 text: qsTr("Favorites")
                 icon.source: "image://theme/icon-m-favorite"
                 enabled: false
@@ -98,7 +58,11 @@ Page {
             PopupMenuItem {
                 text: qsTr("Settings")
                 icon.source: "image://theme/icon-m-setting"
-                enabled: false
+                enabled: true
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("SettingsPage.qml"), {});
+                }
             }
         }
     }
