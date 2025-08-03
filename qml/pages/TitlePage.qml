@@ -142,6 +142,7 @@ Page {
 
                     property int savedID: 0
                     property int savedPage: 0
+                    property int savedViewMode: 0
 
                     onClicked: {
                         var id = savedID;
@@ -163,7 +164,8 @@ Page {
                                     pageStack.push(Qt.resolvedUrl("PlayerPage.qml"),
                                                    {jsonData: page.jsonData,
                                                     chapterJsonData: jsonResponse,
-                                                    requestedPage: savedPage
+                                                    requestedPage: savedPage,
+                                                    requestedViewMode: savedViewMode
                                                    });
                                 }
                             }
@@ -186,6 +188,11 @@ Page {
 
                         savedID = status.status.branchID
                         savedPage = status.status.page
+                        if(status.status.viewMode) {
+                            savedViewMode = status.status.viewMode
+                        } else {
+                            savedViewMode = 0
+                        }
                     }
                 }
 
@@ -480,11 +487,20 @@ Page {
                         xhr.onreadystatechange = function() {
                             if (xhr.readyState === XMLHttpRequest.DONE) {
                                 if (xhr.status === 200) {
+                                    var viewMode = 0
+                                    var status = pageFetcher.getReadStatus(jsonData.id)
+                                    console.log(JSON.stringify(status))
+                                    if(status.status && status.status.viewMode) {
+                                        viewMode = status.status.viewMode
+                                        console.log("got mode!")
+                                    }
+
                                     var jsonResponse = JSON.parse(xhr.responseText);
                                     pageStack.push(Qt.resolvedUrl("PlayerPage.qml"),
                                                    {jsonData: page.jsonData,
                                                     chapterJsonData: jsonResponse,
-                                                    requestedPage: 0
+                                                    requestedPage: 0,
+                                                    requestedViewMode: viewMode
                                                    });
                                 }
                             }

@@ -143,14 +143,78 @@
 <context>
     <name>PlayerPage</name>
     <message>
-        <location filename="../qml/pages/PlayerPage.qml" line="28"/>
+        <location filename="../qml/pages/PlayerPage.qml" line="45"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PlayerPage.qml" line="29"/>
+        <location filename="../qml/pages/PlayerPage.qml" line="46"/>
         <source>Tome</source>
         <translation>Том</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="61"/>
+        <source>Settings</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="65"/>
+        <source>View mode</source>
+        <translation>Режим отображения</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="97"/>
+        <source>Full screen</source>
+        <translation>Полный экран</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="98"/>
+        <source>For large tablets</source>
+        <translation>Для планшетов</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="109"/>
+        <source>Zoomable (Right)</source>
+        <translation>Увеличение (Справа)</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="110"/>
+        <source>Starts top-right, manga</source>
+        <translation>Начало сверху-справа, манга</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="122"/>
+        <source>Starts top-left, comics</source>
+        <translation>Начало сверху-слева, комиксы</translation>
+    </message>
+    <message>
+        <source>For small devices, manga</source>
+        <translation type="vanished">Для телефонов, манга</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="121"/>
+        <source>Zoomable (Left)</source>
+        <translation>Увеличение (Слева)</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="133"/>
+        <source>Webtoon</source>
+        <translation>Вебтун</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="134"/>
+        <source>For pages with large height</source>
+        <translation>Страницы с большой высотой</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="358"/>
+        <source>Previous image</source>
+        <translation>Прошлая часть</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="370"/>
+        <source>Next image</source>
+        <translation>Следующая часть</translation>
     </message>
 </context>
 <context>
@@ -203,6 +267,7 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="46"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>May enable explicit content</source>
         <translation>Может включить откровенный контент</translation>
     </message>
@@ -213,7 +278,6 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="56"/>
-        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>May enable explicit artworks</source>
         <translation>Может включить откровенные обложки</translation>
     </message>
@@ -247,73 +311,73 @@
     <name>TitlePage</name>
     <message>
         <location filename="../qml/pages/TitlePage.qml" line="140"/>
-        <location filename="../qml/pages/TitlePage.qml" line="178"/>
+        <location filename="../qml/pages/TitlePage.qml" line="180"/>
         <source>Start reading</source>
         <translation>Начать читать</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="182"/>
+        <location filename="../qml/pages/TitlePage.qml" line="184"/>
         <source>Continue</source>
         <translation>Продолжить</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="229"/>
+        <location filename="../qml/pages/TitlePage.qml" line="236"/>
         <source>Issue year:</source>
         <translation>Год выпуска:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="257"/>
+        <location filename="../qml/pages/TitlePage.qml" line="264"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="270"/>
+        <location filename="../qml/pages/TitlePage.qml" line="277"/>
         <source>Rating:</source>
         <translation>Рейтинг:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="283"/>
+        <location filename="../qml/pages/TitlePage.qml" line="290"/>
         <source>Age rating:</source>
         <translation>Возрастной рейтинг:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="296"/>
+        <location filename="../qml/pages/TitlePage.qml" line="303"/>
         <source>Genres:</source>
         <translation>Жанры:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="312"/>
+        <location filename="../qml/pages/TitlePage.qml" line="319"/>
         <source>Categories:</source>
         <translation>Категории:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="328"/>
+        <location filename="../qml/pages/TitlePage.qml" line="335"/>
         <source>State:</source>
         <translation>Статус:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="357"/>
+        <location filename="../qml/pages/TitlePage.qml" line="364"/>
         <source>Support ReManga</source>
         <translation>Поддержи ReManga</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="363"/>
+        <location filename="../qml/pages/TitlePage.qml" line="370"/>
         <source>Liked our work? Support us</source>
         <translation>Нравится наша работа? Поддержи</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="385"/>
+        <location filename="../qml/pages/TitlePage.qml" line="392"/>
         <source>Updating count</source>
         <translation>Обновление</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="498"/>
+        <location filename="../qml/pages/TitlePage.qml" line="514"/>
         <source>Page</source>
         <translation>Страница</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="185"/>
-        <location filename="../qml/pages/TitlePage.qml" line="457"/>
+        <location filename="../qml/pages/TitlePage.qml" line="187"/>
+        <location filename="../qml/pages/TitlePage.qml" line="464"/>
         <source>Chapter</source>
         <translation>Глава</translation>
     </message>
@@ -333,8 +397,8 @@
         <translation>Отключено в настройках</translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="184"/>
-        <location filename="../qml/pages/TitlePage.qml" line="469"/>
+        <location filename="../qml/pages/TitlePage.qml" line="186"/>
+        <location filename="../qml/pages/TitlePage.qml" line="476"/>
         <source>Tome</source>
         <translation>Том</translation>
     </message>

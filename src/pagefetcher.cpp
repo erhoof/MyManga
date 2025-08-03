@@ -221,7 +221,8 @@ void PageFetcher::setReadStatus(const QString &id,
                                 const QString &branchID,
                                 const QString &tome,
                                 const QString &chapter,
-                                const QString &page) {
+                                const QString &page,
+                                int viewMode) {
 
     auto path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     auto fullPath = path + "/status-" + id + ".json";
@@ -241,6 +242,7 @@ void PageFetcher::setReadStatus(const QString &id,
     jsonObject["tome"] = tome;
     jsonObject["chapter"] = chapter;
     jsonObject["page"] = page;
+    jsonObject["viewMode"] = viewMode;
 
     QJsonObject rootObject = jsonDoc.object();
     rootObject["status"] = jsonObject;

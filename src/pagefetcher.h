@@ -25,7 +25,8 @@ public:
                                    const QString &branchID,
                                    const QString &tome,
                                    const QString &chapter,
-                                   const QString &page);
+                                   const QString &page,
+                                   int viewMode);
 
     Q_INVOKABLE QString getSetting(const QString &id);
     Q_INVOKABLE void setSetting(const QString &id, const QString &value);

@@ -123,13 +123,73 @@
 <context>
     <name>PlayerPage</name>
     <message>
-        <location filename="../qml/pages/PlayerPage.qml" line="28"/>
+        <location filename="../qml/pages/PlayerPage.qml" line="45"/>
         <source>Chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/PlayerPage.qml" line="29"/>
+        <location filename="../qml/pages/PlayerPage.qml" line="46"/>
         <source>Tome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="61"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="65"/>
+        <source>View mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="97"/>
+        <source>Full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="98"/>
+        <source>For large tablets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="109"/>
+        <source>Zoomable (Right)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="110"/>
+        <source>Starts top-right, manga</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="122"/>
+        <source>Starts top-left, comics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="121"/>
+        <source>Zoomable (Left)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="133"/>
+        <source>Webtoon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="134"/>
+        <source>For pages with large height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="358"/>
+        <source>Previous image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/PlayerPage.qml" line="370"/>
+        <source>Next image</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -183,6 +243,7 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="46"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>May enable explicit content</source>
         <translation type="unfinished"></translation>
     </message>
@@ -193,7 +254,6 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="56"/>
-        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>May enable explicit artworks</source>
         <translation type="unfinished"></translation>
     </message>
@@ -227,73 +287,73 @@
     <name>TitlePage</name>
     <message>
         <location filename="../qml/pages/TitlePage.qml" line="140"/>
-        <location filename="../qml/pages/TitlePage.qml" line="178"/>
+        <location filename="../qml/pages/TitlePage.qml" line="180"/>
         <source>Start reading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="182"/>
+        <location filename="../qml/pages/TitlePage.qml" line="184"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="229"/>
+        <location filename="../qml/pages/TitlePage.qml" line="236"/>
         <source>Issue year:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="257"/>
+        <location filename="../qml/pages/TitlePage.qml" line="264"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="270"/>
+        <location filename="../qml/pages/TitlePage.qml" line="277"/>
         <source>Rating:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="283"/>
+        <location filename="../qml/pages/TitlePage.qml" line="290"/>
         <source>Age rating:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="296"/>
+        <location filename="../qml/pages/TitlePage.qml" line="303"/>
         <source>Genres:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="312"/>
+        <location filename="../qml/pages/TitlePage.qml" line="319"/>
         <source>Categories:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="328"/>
+        <location filename="../qml/pages/TitlePage.qml" line="335"/>
         <source>State:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="357"/>
+        <location filename="../qml/pages/TitlePage.qml" line="364"/>
         <source>Support ReManga</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="363"/>
+        <location filename="../qml/pages/TitlePage.qml" line="370"/>
         <source>Liked our work? Support us</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="385"/>
+        <location filename="../qml/pages/TitlePage.qml" line="392"/>
         <source>Updating count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="498"/>
+        <location filename="../qml/pages/TitlePage.qml" line="514"/>
         <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="185"/>
-        <location filename="../qml/pages/TitlePage.qml" line="457"/>
+        <location filename="../qml/pages/TitlePage.qml" line="187"/>
+        <location filename="../qml/pages/TitlePage.qml" line="464"/>
         <source>Chapter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -313,8 +373,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TitlePage.qml" line="184"/>
-        <location filename="../qml/pages/TitlePage.qml" line="469"/>
+        <location filename="../qml/pages/TitlePage.qml" line="186"/>
+        <location filename="../qml/pages/TitlePage.qml" line="476"/>
         <source>Tome</source>
         <translation type="unfinished"></translation>
     </message>
